@@ -1,0 +1,81 @@
+name: lint
+
+on: pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  super-linter:
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+        with:
+          # super-linter needs the full git history to get the
+          # list of files that changed across commits
+          fetch-depth: 0
+
+      - name: Get changed c# files
+        id: changed-csharp-files
+        uses: tj-actions/changed-files@6b2903bdce6310cfbddd87c418f253cf29b2dec9 # v44.5.6
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+            **.cs
+
+      - name: Setup linting config
+        id: config
+        env:
+          hasChangedCSharpFiles: ${{ steps.changed-csharp-files.outputs.any_changed == 'true' }}
+        run: |
+          if [ "${hasChangedCSharpFiles}" == "true" ]; then
+            echo "VALIDATE_ALL_CODEBASE=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "VALIDATE_ALL_CODEBASE=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run super-linter
+        uses: super-linter/super-linter@3fe03abab2eafb293ace16d4a3b07aeabcb3f1a0 # v6.7.0
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILTER_REGEX_EXCLUDE: (./\.editorconfig|\.idea/*|\.vscode/*)
+          IGNORE_GENERATED_FILES: true
+          # false -> only checks changed files
+          VALIDATE_ALL_CODEBASE: ${{ steps.config.outputs.VALIDATE_ALL_CODEBASE  == 'true'}}
+          VALIDATE_CSHARP: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_YAML: true
+
+  spellcheck:
+    permissions:
+      contents: read # for streetsidesoftware/cspell-action to fetch files for commit
+      pull-requests: read # for streetsidesoftware/cspell-action to fetch commits for PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
+        with:
+          egress-policy: audit
+
+      - name: Checkout code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Spellcheck
+        uses: streetsidesoftware/cspell-action@245201e3f58019204d99920deeb78aade6724230 # v6.6.0
+        with:
+          config: .cspell.json
+          check_dot_files: false
+          incremental_files_only: true
