@@ -1,7 +1,7 @@
 namespace SaanSoft.CorrelationId;
 
 /// <summary>
-/// If no correlationId is set, it will default to `Guid.NewGuid().ToString()` to ensure a value is always parovided.
+/// If no correlationId is set, it will default to `Guid.NewGuid().ToString()` to ensure a value is always provided.
 /// </summary>
 public class SimpleCorrelationIdProvider : ICorrelationIdProvider
 {

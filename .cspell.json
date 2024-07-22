@@ -13,6 +13,7 @@
     "./.githooks/**",
     "./.github/dependabot.yml",
     "./.github/workflows/**",
+    "./.vscode/extensions.json",
     "./dictionary.dic",
     "./Directory.*.props",
     "./Directory.*.targets",

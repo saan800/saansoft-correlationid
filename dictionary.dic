@@ -1,3 +1,4 @@
+abbrev
 bson
 codecov
 color
@@ -6,6 +7,6 @@ opencover
 Saan
 SaanSoft
 Specflow
-svelvet
+signoff
 unittests
 Xunit
