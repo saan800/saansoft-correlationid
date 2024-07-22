@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net8.0</TargetFrameworks>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <NoWarn>CS1591;CS8602;CS8625;CS8618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture.AutoFakeItEasy" />
+    <PackageReference Include="AutoFixture.Xunit2" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SaanSoft.CorrelationId\SaanSoft.CorrelationId.csproj" />
+    <ProjectReference Include="..\SaanSoft.Tests.CorrelationId.Common\SaanSoft.Tests.CorrelationId.Common.csproj" />
+  </ItemGroup>
+</Project>
