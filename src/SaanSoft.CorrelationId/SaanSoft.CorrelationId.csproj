@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
+    <Authors>SaanSoft</Authors>
+    <Product>SaanSoft.CorrelationId</Product>
+    <Description>CorrelationId middleware for ASP.NET Core</Description>
   </PropertyGroup>
 
 </Project>
