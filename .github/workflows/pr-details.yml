@@ -28,6 +28,6 @@ jobs:
             style
             test
           # Regular expression to validate description
-          description_regexp: ([\w ]+)
+          description_regexp: (.+)
           # Make scope requires (boolean)
           require_scope: "false"
