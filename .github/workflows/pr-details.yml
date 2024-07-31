@@ -1,0 +1,33 @@
+name: pr-details
+
+on:
+  pull_request:
+
+jobs:
+  Validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title
+        uses: lab42/conventional-commit@main
+        with:
+          # Allowed commit types
+          allowed_types: |
+            breaking change
+            bugfix
+            build
+            chore
+            ci
+            docs
+            feat
+            feature
+            fix
+            hotfix
+            perf
+            refactor
+            revert
+            style
+            test
+          # Regular expression to validate description
+          description_regexp: ([\w ]+)
+          # Make scope requires (boolean)
+          require_scope: "false"
