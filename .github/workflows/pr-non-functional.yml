@@ -59,6 +59,7 @@ jobs:
 
   pr-triage:
     runs-on: ubuntu-latest
+
     permissions:
       pull-requests: write # to add labels to the PR
 
