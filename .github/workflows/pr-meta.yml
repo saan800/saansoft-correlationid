@@ -1,4 +1,4 @@
-name: lint
+name: PR Lint and Metadata
 
 on: pull_request
 
@@ -61,7 +61,7 @@ jobs:
           check_dot_files: false
           incremental_files_only: true
 
-  pr:
+  pr-metadata:
     runs-on: ubuntu-latest
 
     steps:
