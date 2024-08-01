@@ -65,8 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read # the config file
-      pull-requests: write # to add labels
-      statuses: write # to generate status checks
+      pull-requests: write # to add labels to the PR
 
     steps:
       - name: Harden Runner
@@ -123,11 +122,5 @@ jobs:
       - name: Label PR
         uses: grafana/pr-labeler-action@v0.1.0
         with:
-          # configuration-path: .github/pull_request_labeler.yml
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      # - name: Label PR
-      #   uses: fuxingloh/multi-labeler@v4
-      #   # env:
-      #   #   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
