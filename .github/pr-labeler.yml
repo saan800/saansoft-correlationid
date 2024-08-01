@@ -8,6 +8,6 @@ label-mapping:
   bugfix: [ 'fix', 'bugfix' ]
   documentation: [ 'docs' ]
   feature: [ 'feat', 'feature' ]
-  misc: [ 'refactor', 'revert', 'perf', 'style', 'test' ]
-  no-build: [ 'build', 'chore', 'ci', 'dependencies' ]
+  misc: [ 'chore', 'refactor', 'revert', 'perf', 'style', 'test' ]
+  no-release-notes: [ 'build', 'ci', 'dependencies' ]
 
