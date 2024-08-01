@@ -92,7 +92,7 @@ jobs:
   scorecard:
     name: Scorecard analysis
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'branch_protection_rule'
+    # if: github.event_name == 'push' || github.event_name == 'schedule' || github.event_name == 'branch_protection_rule'
     permissions:
       # Needed to upload the results to code-scanning dashboard.
       security-events: write
