@@ -1,0 +1,14 @@
+version: v1
+
+labels:
+  - label: 'feat'
+    matcher:
+      title: '^(feat|feature):.*'
+
+  - label: 'fix'
+    matcher:
+      title: '^fix:.*'
+
+  - label: 'ci'
+    matcher:
+      title: '^ci:.*'
