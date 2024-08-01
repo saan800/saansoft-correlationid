@@ -64,7 +64,7 @@ jobs:
   pr-triage:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      pull-requests: write # to add labels
 
     steps:
       - name: Harden Runner
