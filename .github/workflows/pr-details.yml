@@ -7,7 +7,7 @@ jobs:
   conventional-commits:
     runs-on: ubuntu-latest
     steps:
-      - name: Harden Runner
+    - name: Harden Runner
         uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
         with:
           egress-policy: audit
@@ -15,7 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - uses: amannn/action-semantic-pull-request@v5
+      # https://github.com/marketplace/actions/semantic-pull-request
+      - name: Validate PR title
+        uses: amannn/action-semantic-pull-request@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -24,7 +24,7 @@ serviceCollection.AddScoped<ICorrelationIdProvider, CorrelationIdProvider>();
 ## Usage
 
 Pass `ICorrelationIdProvider` into the class's constructor, then call `correlationIdProvider.Get()` 
-to retrive the `CorrelationId` for the current request.
+to retrieve the `CorrelationId` for the current request.
 
 ## Dependencies
 
