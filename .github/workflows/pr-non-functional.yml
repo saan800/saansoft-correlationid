@@ -12,7 +12,7 @@ jobs:
     permissions:
       packages: read
       # To report GitHub Actions status checks
-      statuses: write
+      # statuses: write
 
     steps:
       - name: Harden Runner
