@@ -15,30 +15,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Conventional Commits
-        uses: crqra/conventional-commits-action@1.0.0
-  # Validate:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Validate PR title
-  #       uses: lab42/conventional-commit@main
-  #       with:
-  #         # Allowed commit types
-  #         allowed_types: |
-  #           breaking change
-  #           bugfix
-  #           build
-  #           chore
-  #           ci
-  #           docs
-  #           feat
-  #           feature
-  #           fix
-  #           hotfix
-  #           perf
-  #           refactor
-  #           revert
-  #           style
-  #           test
-  #         # Make scope requires (boolean)
-  #         require_scope: "false"
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Validate PR title
+      #   uses: lab42/conventional-commit@main
+      #   with:
+      #     # Allowed commit types
+      #     allowed_types: |
+      #       breaking change
+      #       bugfix
+      #       build
+      #       chore
+      #       ci
+      #       docs
+      #       feat
+      #       feature
+      #       fix
+      #       hotfix
+      #       perf
+      #       refactor
+      #       revert
+      #       style
+      #       test
+      #     # Make scope requires (boolean)
+      #     require_scope: "false"
