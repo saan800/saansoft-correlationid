@@ -9,6 +9,6 @@ labels:
     matcher:
       title: '^fix:.*'
 
-  - label: 'ci'
+   label: 'ci'
     matcher:
       title: '^ci:.*'
