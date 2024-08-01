@@ -17,6 +17,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>correlationid;logging;SaanSoft</PackageTags>
     <RepositoryType>git</RepositoryType>
+
+    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
 
   <ItemGroup>
