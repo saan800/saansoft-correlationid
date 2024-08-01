@@ -1,9 +1,0 @@
-add-missing-labels: true
-label-mapping:
-  breaking-change: [ 'breaking change', 'breaking changes' ]
-  bugfix: [ 'fix', 'bugfix' ]
-  documentation: [ 'docs' ]
-  feature: [ 'feat', 'feature' ]
-  misc: [ 'refactor', 'revert', 'perf', 'style', 'test' ]
-  no-build: [ 'build', 'chore', 'ci', 'dependencies' ]
-
