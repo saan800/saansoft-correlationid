@@ -63,6 +63,8 @@ jobs:
 
   pr-triage:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
 
     steps:
       - name: Harden Runner
@@ -124,4 +126,6 @@ jobs:
 
       - name: Label PR
         uses: fuxingloh/multi-labeler@v4
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
