@@ -2,30 +2,36 @@ name: pr-details
 
 on:
   pull_request:
+    types: [opened, reopened, synchronize, edited, ready_for_review]
 
 jobs:
-  Validate:
+  conventional-commits:
     runs-on: ubuntu-latest
     steps:
-      - name: Validate PR title
-        uses: lab42/conventional-commit@main
-        with:
-          # Allowed commit types
-          allowed_types: |
-            breaking change
-            bugfix
-            build
-            chore
-            ci
-            docs
-            feat
-            feature
-            fix
-            hotfix
-            perf
-            refactor
-            revert
-            style
-            test
-          # Make scope requires (boolean)
-          require_scope: "false"
+      - name: Conventional Commits
+        uses: crqra/conventional-commits-action@1.0.0
+  # Validate:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Validate PR title
+  #       uses: lab42/conventional-commit@main
+  #       with:
+  #         # Allowed commit types
+  #         allowed_types: |
+  #           breaking change
+  #           bugfix
+  #           build
+  #           chore
+  #           ci
+  #           docs
+  #           feat
+  #           feature
+  #           fix
+  #           hotfix
+  #           perf
+  #           refactor
+  #           revert
+  #           style
+  #           test
+  #         # Make scope requires (boolean)
+  #         require_scope: "false"
