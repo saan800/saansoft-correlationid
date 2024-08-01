@@ -1,6 +1,10 @@
-add-missing-labels: true
+add-missing-labels: true # Whether to add missing labels to the repository
+clear-prexisting: true # Whether to remove preexisting labels from the PR in favor of the generated one
+include-commits: false # Consider the PR commit messages when adding labels
+include-title: true # Consider the PR title when adding labels
+label-for-breaking-changes: 'breaking' # Label to be used when the message has the breaking change syntax '!:' E.g. "feat!: This break things"
 label-mapping:
-  breaking-change: [ 'breaking change', 'breaking changes' ]
+  breaking: [ 'breaking change', 'breaking changes' ]
   bugfix: [ 'fix', 'bugfix' ]
   documentation: [ 'docs' ]
   feature: [ 'feat', 'feature' ]
