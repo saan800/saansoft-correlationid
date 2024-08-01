@@ -64,7 +64,9 @@ jobs:
   pr-triage:
     runs-on: ubuntu-latest
     permissions:
+      contents: read # the config file
       pull-requests: write # to add labels
+      statuses: write # to generate status checks
 
     steps:
       - name: Harden Runner
@@ -126,6 +128,6 @@ jobs:
 
       - name: Label PR
         uses: fuxingloh/multi-labeler@v4
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        # env:
+        #   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
