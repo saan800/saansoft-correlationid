@@ -78,16 +78,12 @@ jobs:
           # Configure which types are allowed (newline-delimited).
           # Default: https://github.com/commitizen/conventional-commit-types
           types: |
-            breaking
-            breaking change
-            bugfix
+            REAKING CHANGE
             build
-            ci
             chore
-            dependencies
+            ci
             docs
             feat
-            feature
             fix
             perf
             refactor
