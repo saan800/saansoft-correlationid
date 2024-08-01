@@ -17,7 +17,7 @@ fi
 commit_message="$1"
 
 
-validTypes="breaking change|bugfix|build|ci|chore|docs|feat|feature|fix|perf|refactor|revert|style|test"
+validTypes="breaking|bugfix|build|ci|chore|docs|feat|feature|fix|perf|refactor|revert|style|test"
 system_msg_regex="^(Merge remote-tracking branch|Revert) .*"
 valid_msg_regex="^($validTypes)(\(.{3,}\))?!?: .{4,}"
 

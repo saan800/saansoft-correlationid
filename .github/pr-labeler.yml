@@ -4,10 +4,10 @@ include-commits: false # Consider the PR commit messages when adding labels
 include-title: true # Consider the PR title when adding labels
 label-for-breaking-changes: 'breaking' # Label to be used when the message has the breaking change syntax '!:' E.g. "feat!: This break things"
 label-mapping:
-  breaking: [ 'breaking change', 'breaking changes' ]
+  breaking: [ 'breaking', 'breaking change', 'breaking changes' ]
   bugfix: [ 'fix', 'bugfix' ]
   documentation: [ 'docs' ]
   feature: [ 'feat', 'feature' ]
-  misc: [ 'refactor', 'revert', 'perf', 'style', 'test' ]
-  no-build: [ 'build', 'chore', 'ci', 'dependencies' ]
+  misc: [ 'chore', 'refactor', 'revert', 'perf', 'style', 'test' ]
+  no-release-notes: [ 'build', 'ci', 'dependencies' ]
 

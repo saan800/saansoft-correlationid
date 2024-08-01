@@ -11,6 +11,9 @@ on:
   schedule:
     - cron: '36 3 * * 1'
 
+permissions:
+  contents: read
+
 jobs:
   # For most projects, this workflow file will not need changing; you simply need
   # to commit it to your repository.
@@ -34,7 +37,6 @@ jobs:
     permissions:
       # required for all workflows
       security-events: write
-      contents: read
 
     strategy:
       fail-fast: false
@@ -89,8 +91,7 @@ jobs:
 
   dependency-review:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    if: github.event_name == 'pull_request'
 
     steps:
       - name: Harden Runner
