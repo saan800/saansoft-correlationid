@@ -8,14 +8,11 @@ permissions:
 jobs:
   super-linter:
     runs-on: ubuntu-latest
-
     permissions:
       packages: read
-      # To report GitHub Actions status checks
-      # statuses: write
 
     steps:
-  - name: Harden Runner
+      - name: Harden Runner
         uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
         with:
           egress-policy: audit
@@ -40,7 +37,7 @@ jobs:
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_YAML: true
 
-  spellcheck:
+  spell-check:
     permissions:
       contents: read # for streetsidesoftware/cspell-action to fetch files for commit
       pull-requests: read # for streetsidesoftware/cspell-action to fetch commits for PR
@@ -119,6 +116,7 @@ jobs:
           ignoreLabels: |
             dependencies
 
+      # config in /.github/pr-labeler.yml
       - name: Label PR
         uses: grafana/pr-labeler-action@50737759cb150f5d312de1a45559027156db8bab # v0.1.0
         with:
