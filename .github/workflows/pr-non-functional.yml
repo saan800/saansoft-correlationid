@@ -2,6 +2,9 @@ name: pr-non-functional
 
 on: pull_request
 
+permissions:
+  contents: read
+
 jobs:
   super-linter:
     runs-on: ubuntu-latest
@@ -36,7 +39,6 @@ jobs:
 
   spell-check:
     permissions:
-      contents: read # for streetsidesoftware/cspell-action to fetch files for commit
       pull-requests: read # for streetsidesoftware/cspell-action to fetch commits for PR
     runs-on: ubuntu-latest
     steps:
@@ -58,7 +60,6 @@ jobs:
   pr-triage:
     runs-on: ubuntu-latest
     permissions:
-      contents: read # the config file
       pull-requests: write # to add labels to the PR
 
     steps:
@@ -118,4 +119,3 @@ jobs:
         uses: grafana/pr-labeler-action@50737759cb150f5d312de1a45559027156db8bab # v0.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
