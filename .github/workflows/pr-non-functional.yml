@@ -2,9 +2,6 @@ name: pr-non-functional
 
 on: pull_request
 
-# permissions:
-#   contents: read
-
 jobs:
   super-linter:
     runs-on: ubuntu-latest
