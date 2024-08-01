@@ -87,6 +87,7 @@ jobs:
             dependencies
             docs
             feat
+            feature
             fix
             perf
             refactor
@@ -114,3 +115,9 @@ jobs:
           # event triggers in your workflow.
           ignoreLabels: |
             dependencies
+
+      - name: Label PR
+        uses: grafana/pr-labeler-action@v0.1.0
+        with:
+          configuration-path: .github/pull_request_labeler.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
