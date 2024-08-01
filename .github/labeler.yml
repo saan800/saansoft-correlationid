@@ -11,4 +11,4 @@ labels:
 
   - label: 'ci'
     matcher:
-      title: '^ci:.*'
+      title: '^ci(\([^\)]+\))?:.*'
