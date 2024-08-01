@@ -5,3 +5,5 @@ label-mapping:
   documentation: [ 'docs' ]
   feature: [ 'feat', 'feature' ]
   misc: [ 'refactor', 'revert', 'perf', 'style', 'test' ]
+  no-build: [ 'build', 'chore', 'ci', 'dependencies' ]
+
