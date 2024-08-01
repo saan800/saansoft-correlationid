@@ -1,4 +1,4 @@
-name: pr-lint-and-triage
+name: pr-non-functional
 
 on: pull_request
 
