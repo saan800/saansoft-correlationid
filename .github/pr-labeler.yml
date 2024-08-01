@@ -8,6 +8,6 @@ label-mapping:
   fix: [ 'fix' ]
   documentation: [ 'docs' ]
   feature: [ 'feat', 'feature' ]
-  misc: [ 'chore', 'perf', 'refactor', 'revert', 'style', 'test' ]
-  no-release-notes: [ 'build', 'ci', 'dependencies' ]
+  misc: [ 'perf', 'refactor', 'revert', 'style', 'test' ]
+  no-release-notes: [ 'build', 'chore', 'ci', 'dependencies' ]
 
