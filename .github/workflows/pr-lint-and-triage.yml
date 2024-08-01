@@ -1,4 +1,4 @@
-name: pr-lint-and-metadata
+name: pr-lint-and-triage
 
 on: pull_request
 
@@ -61,7 +61,7 @@ jobs:
           check_dot_files: false
           incremental_files_only: true
 
-  pr-metadata:
+  pr-triage:
     runs-on: ubuntu-latest
 
     steps:
