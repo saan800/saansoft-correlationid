@@ -61,3 +61,29 @@ jobs:
           fail_ci_if_error: false
           flags: unittests, ${{ matrix.dotnet-version }}
           slug: saan800/saansoft-correlationId
+
+  version:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Get next version
+        uses: reecetech/version-increment@2024.4.3
+        id: version
+        with:
+          scheme: conventional_commits
+          increment: patch
+
+      - name: display version
+        run: echo "${{ steps.version.outputs.version }}"
+
+
+      # - name: Set outputs
+      #   id: set_outputs
+      #   run: echo "::set-output name=version::${{ steps.version.outputs.version }}"
+
+
+
