@@ -1,5 +1,5 @@
 add-missing-labels: true
- # Whether to remove prexisting labels from the PR
+# Whether to remove prexisting labels from the PR
 clear-prexisting: false
 # Consider the PR commit messages when adding labels
 include-commits: false
@@ -15,4 +15,3 @@ label-mapping:
   feature: ['feat','feature']
   misc: ['perf','refactor','revert','style','test']
   no-release: ['build','chore','ci','dependencies']
-
