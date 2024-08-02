@@ -1,14 +1,6 @@
 name: pr
 
-on:
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - labeled
-      - unlabeled
-  pull_request:
+on: pull_request
 
 permissions:
   contents: read
@@ -35,7 +27,7 @@ jobs:
           # Configure which types are allowed (newline-delimited).
           # Default: https://github.com/commitizen/conventional-commit-types
           types: |
-            REAKING CHANGE
+            BREAKING CHANGE
             build
             chore
             ci
@@ -69,7 +61,7 @@ jobs:
           ignoreLabels: |
             dependencies
           # allow the use of the "[WIP] feat: some new feature" syntax
-          wip: true
+          # wip: true
 
       # config in /.github/pr-labeler.yml
       - name: Label PR
