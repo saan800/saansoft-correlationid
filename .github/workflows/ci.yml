@@ -23,7 +23,7 @@ jobs:
       contents: read
       checks: write
 
-    uses: ./.github/workflows/build-and-test.yml
+    uses: ./.github/workflows/_build-and-test.yml
     with:
       os: ${{ matrix.os }}
       dotnet-version: ${{ matrix.dotnet-version }}
