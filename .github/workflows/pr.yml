@@ -9,12 +9,6 @@ on:
       - labeled
       - unlabeled
   pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - labeled
-      - unlabeled
 
 permissions:
   contents: read
