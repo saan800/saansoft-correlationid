@@ -21,14 +21,14 @@ jobs:
     steps:
       - name: set list varaible
         run: |
-          IFS=',' read -a os_list <<< "${{ env.OS_LIST }}"
-          echo "OS_LIST=$(echo $(os_list))" >> $GITHUB_ENV
+          IFS=',' read -a os_list_temp <<< "${{ env.OS_LIST }}"
+          echo "OS_LIST_NEW=$(echo ${os_list_temp})" >> $GITHUB_ENV
         id: set_list
 
       # - name: Set env
       #   run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
       - name: Test
-        run: echo $OS_LIST
+        run: echo $OS_LIST_NEW
 
   build-and-test:
     strategy:
