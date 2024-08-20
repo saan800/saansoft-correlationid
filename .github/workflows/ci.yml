@@ -22,7 +22,7 @@ jobs:
       - name: set list varaible
         run: |
           IFS=',' read -a array <<< "${{ env.OS_LIST }}"
-          echo "::set-output name=os_list::${array[@]}"
+          echo "${array[0]} ${array[0]}"
         id: set_list
 
   build-and-test:
