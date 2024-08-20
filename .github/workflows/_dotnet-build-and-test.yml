@@ -1,4 +1,4 @@
-name: build-and-test
+name: dotnet-build-and-test
 
 on:
   workflow_call:
@@ -7,6 +7,7 @@ on:
         required: false
         type: string
         default: ubuntu-latest
+        description: A comma separated list of operating system(s) to run the build and test jobs on. e.g. "''ubuntu-latest'',''windows-latest''".
       dotnet-version:
         required: true
         type: string
@@ -25,8 +26,14 @@ permissions:
   contents: read
 
 jobs:
-  build-and-test:
-    name: build-and-test-${{ inputs.os }}-${{ inputs.dotnet-version }}
+  dotnet-build-and-test:
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     os: [""]
+    #     dotnet-version: ["6.0.x", "7.0.x", "8.0.x"]
+
+    name: dotnet-build-and-test-${{ inputs.os }}-${{ inputs.dotnet-version }}
     runs-on: ${{ inputs.os }}
 
     permissions:
@@ -71,7 +78,3 @@ jobs:
           fail_ci_if_error: false
           flags: ${{ inputs.codecov-flag }}, ${{ inputs.dotnet-version }}, ${{ inputs.os }}
           slug: ${{ inputs.codecov-slug }}
-
-
-
-
