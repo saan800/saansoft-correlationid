@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: set list varaible
         run: |
-          IFS=',' read -a array <<< "${{ env.OS_LIST }}"
-          echo "${array[0]} ${array[0]}"
+          IFS=',' read -a os_list <<< "${{ env.OS_LIST }}"
+          echo "${os_list}"
         id: set_list
 
   build-and-test:
