@@ -22,7 +22,7 @@ jobs:
       - name: set list varaible
         run: |
           IFS=',' read -a os_list_temp <<< "${{ env.OS_LIST }}"
-          echo "OS_LIST_NEW=$(echo ${os_list_temp})" >> $GITHUB_ENV
+          echo "OS_LIST_NEW=${os_list_temp}" >> $GITHUB_ENV
         id: set_list
 
       # - name: Set env
