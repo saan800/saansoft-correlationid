@@ -28,7 +28,7 @@ jobs:
           echo "OS_LIST_NEW=${os_list_temp[@]}" >> $GITHUB_ENV
 
           $testBro = $os_list_temp
-          echo "os_array=[\"${testBro//', '/\",\"}\"]" >> $GITHUB_OUTPUT
+          echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
 
       # SERVICES='${{ toJSON(env.OS_LIST_NEW) }}'
 
