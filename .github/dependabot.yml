@@ -32,4 +32,4 @@ updates:
       time: "05:00"
       timezone: "Australia/Perth"
     commit-message:
-      prefix: "chore(nuget dependencies): "
+      prefix: "dependencies(nuget): "
