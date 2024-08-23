@@ -9,7 +9,7 @@ updates:
       time: "05:00"
       timezone: "Australia/Perth"
     commit-message:
-      prefix: "dependencies(github-actions): "
+      prefix: "chore(github-actions dependencies): "
 
   - package-ecosystem: nuget
     directory: "/"
@@ -32,4 +32,4 @@ updates:
       time: "05:00"
       timezone: "Australia/Perth"
     commit-message:
-      prefix: "dependencies(nuget): "
+      prefix: "chore(nuget dependencies): "
