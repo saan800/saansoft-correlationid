@@ -27,7 +27,7 @@ jobs:
           IFS=',' read -a os_list_temp <<< "${{ env.OS_LIST }}"
           echo "OS_LIST_NEW=${os_list_temp[@]}" >> $GITHUB_ENV
 
-          $testBro = ${{ env.OS_LIST }}
+          echo "$testBro=${{ env.OS_LIST }}"
           echo ::set-output name=os_array::"[\"${testBro//','/\",\"}\"]"
 
       # echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
