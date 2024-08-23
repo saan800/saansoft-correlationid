@@ -38,16 +38,6 @@ jobs:
       - name: Restore packages
         run: dotnet restore
 
-      - name: Build
-        run: >
-          dotnet build
-          --no-restore
-          --configuration Release
-          /p:Version=${{ inputs.package-version }}
-          /p:AssemblyVersion=${{ inputs.package-version }}
-          /p:FileVersion=${{ inputs.package-version }}
-          /p:AssemblyInformationalVersion=${{ inputs.package-version }}
-
       - name: Package
         run: >
           dotnet pack
