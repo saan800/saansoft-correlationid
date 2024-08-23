@@ -12,57 +12,27 @@ permissions:
   contents: read
 
 jobs:
-  # generate-matrix:
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     os_array: ${{ steps.generate-matrix.outputs.os_array }}
-  #     version_array: ${{ steps.generate-matrix.outputs.version_array }}
-
-  #   env:
-  #     OS_LIST: "ubuntu-latest,windows-latest"
-  #     VERSION_LIST: "6.0.x, 7.0.x,8.0.x"
-
-  #   steps:
-  #     - name: Generate Matrix Variables
-  #       id: generate-matrix
-  #       run: |
-  #         tempOsList="${{ env.OS_LIST }}""
-  #         tempOsList="${tempOsList//', '/','}"
-  #         echo "os_array=[\"${tempOsList//','/\",\"}\"]" >> $GITHUB_OUTPUT
-
-  #         tempVersionList="${{ env.VERSION_LIST }}"
-  #         tempVersionList="${tempVersionList//', '/','}"
-  #         echo "version_array=[\"${tempVersionList//','/\",\"}\"]" >> $GITHUB_OUTPUT
-
-  #     - name: Show Matrix Variables
-  #       run: |
-  #         echo "os_array=${{ steps.generate-matrix.outputs.os_array }}"
-  #         echo "version_array=${{ steps.generate-matrix.outputs.version_array }}"
-
   build-and-test:
-    # needs: generate-matrix
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     os: ${{fromJson(needs.generate-matrix.outputs.os_array)}}
-    #     dotnet-version: ${{fromJson(needs.generate-matrix.outputs.version_array)}}
-
     permissions:
       contents: read
       checks: write
 
     uses: ./.github/workflows/_dotnet-build-and-test.yml
     with:
-      os-list: "ubuntu-latest, windows-latest"
-      dotnet-version-list: "6.0.x, 7.0.x, 8.0.x"
+      # os-list: "ubuntu-latest, windows-latest"
+      # dotnet-version-list: "6.0.x, 7.0.x, 8.0.x"
+      os-list: ubuntu-latest
+      dotnet-version-list: 8.0.x
       codecov-slug: "saan800/saansoft-correlationId"
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  version:
+  find-version:
     runs-on: ubuntu-latest
     needs: build-and-test
-
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      current-version: ${{ steps.version.outputs.current-version }}
     steps:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
@@ -79,7 +49,3 @@ jobs:
 
       - name: display new version
         run: echo "${{ steps.version.outputs.version }}"
-
-      # - name: Set outputs
-      #   id: set_outputs
-      #   run: echo "::set-output name=version::${{ steps.version.outputs.version }}"

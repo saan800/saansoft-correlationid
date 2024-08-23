@@ -37,7 +37,6 @@ jobs:
       - name: Generate Matrix Variables
         id: generate-matrix
         run: |
-          # shellcheck disable=SC2086
           tempOsList="${{ inputs.os-list }}"
           tempOsList="${tempOsList//', '/','}"
           echo "os_array=[\"${tempOsList//','/\",\"}\"]" >> $GITHUB_OUTPUT
