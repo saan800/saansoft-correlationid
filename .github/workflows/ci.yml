@@ -32,7 +32,7 @@ jobs:
           tempVersionList=${{ env.VERSION_LIST }}
           temptwo="${tempVersionList//', '/','}"
           echo "temptwo=$temptwo"
-          echo "version_array=[\"${tempVersionList//','/\",\"}\"]" >> $GITHUB_OUTPUT
+          echo "version_array=[\"${temptwo//','/\",\"}\"]" >> $GITHUB_OUTPUT
 
       - name: Show Matrix Variables
         run: |
