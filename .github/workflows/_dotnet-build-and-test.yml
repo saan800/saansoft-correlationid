@@ -3,14 +3,15 @@ name: dotnet-build-and-test
 on:
   workflow_call:
     inputs:
-      os:
+      os-list:
         required: false
         type: string
         default: ubuntu-latest
-        description: A comma separated list of operating system(s) to run the build and test jobs on. e.g. "''ubuntu-latest'',''windows-latest''".
-      dotnet-version:
+        description: A comma separated list of operating system(s) to run the build and test jobs on. e.g. "ubuntu-latest, windows-latest".
+      dotnet-version-list:
         required: true
         type: string
+        description: A comma separated list of dotnet version(s) to run the build and test jobs on. e.g. "6.0.x, 7.0.x, 8.0.x".
       codecov-slug:
         required: false
         type: string
@@ -26,15 +27,39 @@ permissions:
   contents: read
 
 jobs:
-  dotnet-build-and-test:
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     os: [""]
-    #     dotnet-version: ["6.0.x", "7.0.x", "8.0.x"]
+  generate-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      os_array: ${{ steps.generate-matrix.outputs.os_array }}
+      dotnet_version_array: ${{ steps.generate-matrix.outputs.dotnet_version_array }}
 
-    name: dotnet-build-and-test-${{ inputs.os }}-${{ inputs.dotnet-version }}
-    runs-on: ${{ inputs.os }}
+    steps:
+      - name: Generate Matrix Variables
+        id: generate-matrix
+        run: |
+          tempOsList="${{ inputs.os-list }}""
+          tempOsList="${tempOsList//', '/','}"
+          echo "os_array=[\"${tempOsList//','/\",\"}\"]" >> $GITHUB_OUTPUT
+
+          tempVersionList="${{ inputs.dotnet-version-list }}"
+          tempVersionList="${tempVersionList//', '/','}"
+          echo "dotnet_version_array=[\"${tempVersionList//','/\",\"}\"]" >> $GITHUB_OUTPUT
+
+      - name: Show Matrix Variables
+        run: |
+          echo "os_array=${{ steps.generate-matrix.outputs.os_array }}"
+          echo "dotnet_version_array=${{ steps.generate-matrix.outputs.dotnet_version_array }}"
+
+  dotnet-build-and-test:
+    needs: generate-matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{fromJson(needs.generate-matrix.outputs.os_array)}}
+        dotnet-version: ${{fromJson(needs.generate-matrix.outputs.dotnet_version_array)}}
+
+    name: dotnet-build-and-test-${{ matrix.os }}-${{ matrix.dotnet-version }}
+    runs-on: ${{ matrix.os }}
 
     permissions:
       checks: write
@@ -48,10 +73,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Install .NET Core ${{ inputs.dotnet-version }}
+      - name: Install .NET Core ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@6bd8b7f7774af54e05809fcc5431931b3eb1ddee # v4.0.1
         with:
-          dotnet-version: ${{ inputs.dotnet-version }}
+          dotnet-version: ${{ matrix.dotnet-version }}
 
       - name: Restore packages
         run: dotnet restore
@@ -76,5 +101,5 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./reports/coverage/
           fail_ci_if_error: false
-          flags: ${{ inputs.codecov-flag }}, ${{ inputs.dotnet-version }}, ${{ inputs.os }}
+          flags: ${{ inputs.codecov-flag }}, ${{ matrix.dotnet-version }}, ${{ matrix.os }}
           slug: ${{ inputs.codecov-slug }}
