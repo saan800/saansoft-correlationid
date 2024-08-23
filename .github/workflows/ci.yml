@@ -12,23 +12,30 @@ permissions:
   contents: read
 
 jobs:
-  temp:
+  matrix:
     runs-on: ubuntu-latest
+    outputs:
+      os_array: ${{ steps.generate-matrix.outputs.os_array }}
 
     env:
       OS_LIST: "ubuntu-latest,windows-latest"
 
     steps:
-      - name: set list varaible
+      - name: Generate Matrix os
+        id: generate-matrix
         run: |
           IFS=',' read -a os_list_temp <<< "${{ env.OS_LIST }}"
           echo "OS_LIST_NEW=${os_list_temp[@]}" >> $GITHUB_ENV
-        id: set_list
+
+          SERVICES='${{ toJSON(env.OS_LIST_NEW) }}'
+          echo ::set-output name=os_array::${SERVICES}
 
       # - name: Set env
       #   run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
       - name: Test
-        run: echo $OS_LIST_NEW
+        run: |
+          echo "OS_LIST_NEW=${{ env.OS_LIST_NEW }}"
+          echo "os_array=${{ steps.generate-matrix.outputs.os_array }}"
 
   build-and-test:
     strategy:
