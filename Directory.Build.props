@@ -1,20 +1,59 @@
 <Project>
   <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>default</LangVersion>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <IsTestProject Condition="'$(IsTestProject)' == ''">false</IsTestProject>
+    <IsTestProject Condition="$(MSBuildProjectName.StartsWith('Tests.'))">true</IsTestProject>
+    <IsPackable Condition="'$(IsPackable)' == ''">false</IsPackable>
+  </PropertyGroup>
+
   <PropertyGroup Condition=" '$(IsPackable)' == 'true' ">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <EnablePackageValidation>true</EnablePackageValidation>
     <NoWarn>CS1591</NoWarn>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EnablePackageValidation>true</EnablePackageValidation>
+
+    <Authors>saan800</Authors>
+    <Copyright>Sandra Greenhalgh (c) $([System.DateTime]::Now.ToString(yyyy))</Copyright>
+    <PackageProjectUrl>https://github.com/saan800/saansoft-correlationid</PackageProjectUrl>
+    <Company>$(PackageProjectUrl)</Company>
+    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>See $(PackageProjectUrl)/releases for details.</PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(IsTestProject)' == 'true' ">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+  <PropertyGroup Condition=" '$(IsTestProject)' == 'true'">
+    <NoWarn>CS1591;CS8602;CS8625;CS8618</NoWarn>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutput>$([System.IO.Path]::Combine($(MSBuildProjectDirectory), "../../", 'reports', 'coverage'))/</CoverletOutput>
+    <CoverletOutputFormat>opencover,json</CoverletOutputFormat>
+    <MergeWith>$(CoverletOutput)/coverage.json</MergeWith>
+    <Exclude>[SaanSoft.Tests.*]*,[xunit.*]*</Exclude>
   </PropertyGroup>
-  <ItemGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
+
+  <ItemGroup Condition=" '$(IsTestProject)' == 'true'">
+    <Using Include="FakeItEasy" />
+    <Using Include="FluentAssertions" />
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(IsTestProject)' == 'true'">
+    <PackageReference Include="AutoFixture.AutoFakeItEasy" />
+    <PackageReference Include="AutoFixture.Xunit2" />
+    <PackageReference Include="FluentAssertions" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

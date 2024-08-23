@@ -40,6 +40,7 @@ tmp
 # dependencies
 node_modules
 packages
+build-packages
 
 # .NET
 bin
