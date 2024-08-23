@@ -37,7 +37,7 @@ jobs:
       - name: Generate Matrix Variables
         id: generate-matrix
         run: |
-          tempOsList="${{ inputs.os-list }}""
+          tempOsList="${{ inputs.os-list }}"
           tempOsList="${tempOsList//', '/','}"
           echo "os_array=[\"${tempOsList//','/\",\"}\"]" >> $GITHUB_OUTPUT
 
