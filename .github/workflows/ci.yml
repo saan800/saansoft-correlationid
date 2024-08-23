@@ -27,11 +27,11 @@ jobs:
           IFS=',' read -a os_list_temp <<< "${{ env.OS_LIST }}"
           echo "OS_LIST_NEW=${os_list_temp[@]}" >> $GITHUB_ENV
 
-          $testBro = $os_list_temp
-          echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
+          $testBro = ${{ env.OS_LIST }}
+          echo ::set-output name=os_array::"[\"${testBro//','/\",\"}\"]"
 
+      # echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
       # SERVICES='${{ toJSON(env.OS_LIST_NEW) }}'
-
       # - name: Set env
       #   run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
       - name: Test
