@@ -13,5 +13,6 @@ label-mapping:
   bug: ['fix']
   documentation: ['docs']
   feature: ['feat','feature']
+  dependencies: ['dependencies']
   misc: ['perf','refactor','revert','style','test']
-  no-release: ['build','chore','ci','dependencies']
+  no-release: ['build','chore','ci']
