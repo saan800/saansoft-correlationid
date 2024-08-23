@@ -27,10 +27,8 @@ jobs:
           IFS=',' read -a os_list_temp <<< "${{ env.OS_LIST }}"
           echo "OS_LIST_NEW=${os_list_temp[@]}" >> $GITHUB_ENV
 
-          echo "OS_LIST_NEW=${{ env.OS_LIST_NEW }}"
-          echo "OS_LIST_NEW_JOIN=${{ toJson(env.OS_LIST_NEW) }}"
-
-          echo "$testBro=${{ env.OS_LIST }}"
+          testBro=${{ env.OS_LIST }}
+          echo "testBro=${testBro}"
           echo "::set-output name=os_array::[\"${testBro//','/\",\"}\"]"
 
       # echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
@@ -40,6 +38,7 @@ jobs:
       - name: Test
         run: |
           echo "OS_LIST_NEW=${{ env.OS_LIST_NEW }}"
+          echo "OS_LIST_AS_JSON=${{ toJson(env.OS_LIST_NEW) }}"
           echo "os_array=${{ steps.generate-matrix.outputs.os_array }}"
 
   build-and-test:
