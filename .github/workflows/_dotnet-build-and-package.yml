@@ -45,9 +45,9 @@ jobs:
           --configuration Release
           --output build-pacakges
           /p:Version=${{ inputs.package-version }}
-          /p:AssemblyVersion=${{ inputs.package-version }}
-          /p:FileVersion=${{ inputs.package-version }}
-          /p:AssemblyInformationalVersion=${{ inputs.package-version }}
+     #     /p:AssemblyVersion=${{ inputs.package-version }}
+     #     /p:FileVersion=${{ inputs.package-version }}
+     #     /p:AssemblyInformationalVersion=${{ inputs.package-version }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
