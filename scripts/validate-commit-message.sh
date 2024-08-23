@@ -15,9 +15,7 @@ fi
 
 # Read the commit message from the arguments
 commit_message="$1"
-
-
-validTypes="breaking|bugfix|build|ci|chore|docs|feat|feature|fix|perf|refactor|revert|style|test"
+validTypes="BREAKING CHANGE|build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test"
 system_msg_regex="^(Merge remote-tracking branch|Revert) .*"
 valid_msg_regex="^($validTypes)(\(.{3,}\))?!?: .{4,}"
 
