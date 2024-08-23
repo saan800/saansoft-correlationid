@@ -20,7 +20,7 @@ jobs:
 
     env:
       OS_LIST: "ubuntu-latest,windows-latest"
-      VERSION_LIST: "6.0.x,7.0.x,8.0.x"
+      VERSION_LIST: "6.0.x, 7.0.x,8.0.x"
 
     steps:
       - name: Generate Matrix Variables
@@ -30,8 +30,8 @@ jobs:
           echo "os_array=[\"${tempOsList//','/\",\"}\"]" >> $GITHUB_OUTPUT
 
           tempVersionList=${{ env.VERSION_LIST }}
-          tempVersionListTwo=$tempVersionList.replace(", ", ",")
-          echo "tempVersionListTwo ${tempVersionListTwo}"
+          temptwo="${tempVersionList//', '/','}"
+          echo "temptwo=$temptwo"
           echo "version_array=[\"${tempVersionList//','/\",\"}\"]" >> $GITHUB_OUTPUT
 
       - name: Show Matrix Variables
