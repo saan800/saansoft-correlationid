@@ -31,6 +31,7 @@ jobs:
             build
             chore
             ci
+            dependencies
             docs
             feat
             fix
