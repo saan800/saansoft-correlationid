@@ -25,7 +25,8 @@ jobs:
         id: generate-matrix
         run: |
           tempOsList=${{ env.OS_LIST }}
-          echo "::set-output name=os_array::[\"${tempOsList//','/\",\"}\"]"
+          echo "::set-output name=os_array_2::[\"${tempOsList//','/\",\"}\"]"
+          echo "os_array=[\"${tempOsList//','/\",\"}\"]" >> $GITHUB_OUTPUT
 
       # echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
       # SERVICES='${{ toJSON(env.OS_LIST_NEW) }}'
