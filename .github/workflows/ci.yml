@@ -31,7 +31,7 @@ jobs:
           echo "OS_LIST_NEW_JOIN=${{ toJson(env.OS_LIST_NEW) }}"
 
           echo "$testBro=${{ env.OS_LIST }}"
-          echo ::set-output name=os_array::"[\"${testBro//','/\",\"}\"]"
+          echo "::set-output name=os_array::[\"${testBro//','/\",\"}\"]"
 
       # echo "os_array=[\"${testBro//','/\",\"}\"]" >> $GITHUB_OUTPUT
       # SERVICES='${{ toJSON(env.OS_LIST_NEW) }}'
