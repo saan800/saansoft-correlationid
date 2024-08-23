@@ -21,9 +21,6 @@ jobs:
   dotnet-build-and-package:
     runs-on: ${{ inputs.os }}
 
-    permissions:
-      checks: write
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@0d381219ddf674d61a7572ddd19d7941e271515c # v2.9.0
