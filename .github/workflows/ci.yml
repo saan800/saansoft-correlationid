@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Get next version
-        uses: reecetech/version-increment@2ec19615c5a231d4d071a419c87806824145581b # 2024.9.1
+        uses: reecetech/version-increment@a5d65984a6c6e8bbc30ece69d53d96e40736f24c # 2024.9.2
         id: version
         with:
           scheme: conventional_commits
