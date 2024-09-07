@@ -29,7 +29,7 @@ jobs:
         env:
           # To report GitHub Actions status checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_EXCLUDE: (./\.editorconfig|*\.sln|*\.props|\.idea/*|\.vscode/*)
+          FILTER_REGEX_EXCLUDE: (./\.editorconfig|\.idea/*|\.vscode/*)
           IGNORE_GENERATED_FILES: true
           # false -> only checks changed files
           VALIDATE_ALL_CODEBASE: false
