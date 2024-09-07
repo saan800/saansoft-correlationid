@@ -4,18 +4,21 @@ on:
   workflow_call:
     inputs:
       os-list:
+        description: A comma separated list of operating system(s) to run the build and test jobs on. e.g. "ubuntu-latest, windows-latest".
         required: false
         type: string
         default: ubuntu-latest
-        description: A comma separated list of operating system(s) to run the build and test jobs on. e.g. "ubuntu-latest, windows-latest".
       dotnet-version-list:
-        required: true
-        type: string
         description: A comma separated list of dotnet version(s) to run the build and test jobs on. e.g. "6.0.x, 7.0.x, 8.0.x".
+        required: false
+        type: string
+        default: 8.0.x
       codecov-slug:
+        description: "Slug to upload code coverage results for Codecov. e.g. saan800/saansoft-correlationId"
         required: false
         type: string
       codecov-flag:
+        description: "Flag to use for Codecov. e.g. unittests"
         required: false
         type: string
         default: unittests

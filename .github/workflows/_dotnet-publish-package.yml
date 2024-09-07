@@ -8,8 +8,9 @@ on:
         type: string
         default: ubuntu-latest
       dotnet-version:
-        required: true
+        required: false
         type: string
+        default: 8.0.x
       package-artifact-name:
         description: "Name of the artifact to upload to github build artifacts. Should match what was uploaded in dotnet-build-and-package"
         required: false

@@ -8,8 +8,9 @@ on:
         type: string
         default: ubuntu-latest
       dotnet-version:
-        required: true
+        required: false
         type: string
+        default: 8.0.x
       package-version:
         required: true
         type: string
@@ -30,6 +31,10 @@ permissions:
 jobs:
   dotnet-build-and-package:
     runs-on: ${{ inputs.os }}
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Harden Runner
