@@ -26,6 +26,9 @@ max_line_length = off
 [*.sln, *.csproj, *.ruleset, *.props, *.targets]
 max_line_length = off
 
+[*.sln]
+indent_style = tab
+
 [*.cs]
 indent_size = 4
 
