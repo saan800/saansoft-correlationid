@@ -24,48 +24,16 @@ jobs:
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  find-version:
+  get-version:
     uses: ./.github/workflows/_version.yml
-
-    # steps:
-    #   - name: Checkout
-    #     uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
-
-    #   - name: Get next version
-    #     uses: reecetech/version-increment@a5d65984a6c6e8bbc30ece69d53d96e40736f24c # 2024.9.2
-    #     id: get-version
-    #     with:
-    #       scheme: conventional_commits
-    #       increment: patch
-
-    #   - name: Modify version and set assembly version
-    #     id: get-assembly-version
-    #     run: |
-    #       # Capture the version output from previous step
-    #       version="${{ steps.get-version.outputs.version }}"
-
-    #       # Replace '-pre' with ''
-    #       modified_version=$(echo "$version" | sed 's/-pre//')
-
-    #       # Set the modified version as output
-    #       echo "::set-output name=assembly-version::$modified_version"
-
-    #   - name: display current version
-    #     run: echo "${{ steps.get-version.outputs.current-version }}"
-
-    #   - name: display new version
-    #     run: echo "${{ steps.get-version.outputs.version }}"
-
-    #   - name: display new assembly version
-    #     run: echo "${{ steps.get-assembly-version.outputs.assembly-version }}"
 
   build-and-package:
     needs:
       - build-and-test
-      - find-version
+      - get-version
     uses: ./.github/workflows/_dotnet-build-and-package.yml
     with:
       os: ubuntu-latest
       dotnet-version: 8.0.x
-      package-version: ${{ needs.find-version.outputs.version }}
-      assembly-version: ${{ needs.find-version.outputs.assembly-version }}
+      package-version: ${{ needs.get-version.outputs.version }}
+      add-assembly-version: ${{ github.ref == 'refs/heads/main' }}
