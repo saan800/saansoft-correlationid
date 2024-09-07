@@ -35,7 +35,7 @@ jobs:
           git tag -a "v$VERSION" -m "Release version $VERSION"
           git push origin "v$VERSION"
 
-      - name: Release
+      - name: Github Release
         uses: softprops/action-gh-release@fb2d03176f42a1f0dd433ca263f314051d3edd44 # v2.0.7
         if: ${{ github.ref == 'refs/heads/main'}}
         with:
