@@ -40,9 +40,6 @@ jobs:
         run: echo "${{ steps.get-version.outputs.current-version }}"
 
       - name: New version
-        run: echo "${{ steps.get-version.outputs.version }}"
-
-      - name: New version
         id: write_version
         run: |
           VERSION="${{ steps.get-version.outputs.version }}"
