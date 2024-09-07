@@ -13,9 +13,15 @@ on:
       package-version:
         required: true
         type: string
+      package-artifact-name:
+        description: "Name of the artifact to upload to github build artifacts"
+        required: false
+        type: string
+        default: "packages"
       add-assembly-version:
         description: "Should only include assembly version on main branch"
-        required: true
+        required: false
+        default: false
         type: boolean
 
 permissions:
@@ -52,7 +58,7 @@ jobs:
         run: dotnet restore
 
       # Only include assembly version on main branch
-      - name: Package with assembly number
+      - name: Package with assembly number: ${{ inputs.package-version }}
         if: ${{ inputs.add-assembly-version }}
         run: >
           dotnet pack
@@ -65,7 +71,7 @@ jobs:
           /p:AssemblyInformationalVersion=${{ inputs.package-version }}
 
       # Packaging step for non-main branches (without AssemblyVersion)
-      - name: Package without assembly number
+      - name: Package without assembly number: ${{ inputs.package-version }}
         if: ${{ !inputs.add-assembly-version }}
         run: >
           dotnet pack
@@ -77,6 +83,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
         with:
-          name: pacakges
+          name: ${{ inputs.package-artifact-name }}
           path: build-pacakges/*.nupkg
           if-no-files-found: error
