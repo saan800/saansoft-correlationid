@@ -13,6 +13,9 @@ on:
       package-version:
         required: true
         type: string
+      assembly-version:
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -45,9 +48,9 @@ jobs:
           --configuration Release
           --output build-pacakges
           /p:Version=${{ inputs.package-version }}
-     #     /p:AssemblyVersion=${{ inputs.package-version }}
-     #     /p:FileVersion=${{ inputs.package-version }}
-     #     /p:AssemblyInformationalVersion=${{ inputs.package-version }}
+          /p:FileVersion=${{ inputs.package-version }}
+          /p:AssemblyVersion=${{ inputs.assembly-version }}
+          /p:AssemblyInformationalVersion=${{ inputs.assembly-version }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

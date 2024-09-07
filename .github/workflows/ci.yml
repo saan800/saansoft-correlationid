@@ -72,3 +72,4 @@ jobs:
       os: ubuntu-latest
       dotnet-version: 8.0.x
       package-version: ${{ needs.find-version.outputs.version }}
+      assembly-version: ${{ needs.find-version.outputs.assembly-version }}
