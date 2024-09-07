@@ -1,0 +1,45 @@
+name: tag-and-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number to tag and release (without the 'v' prefix)"
+        required: true
+        type: string
+
+  # get version from version-artifact-name
+  # workflow_run:
+  #   workflows: [ci]
+  #   types: [completed]
+  #   branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ inputs.version }}"
+          git tag -a "v$VERSION" -m "Release version $VERSION"
+          git push origin "v$VERSION"
+
+      - name: Github Release
+        uses: softprops/action-gh-release@fb2d03176f42a1f0dd433ca263f314051d3edd44 # v2.0.7
+        if: ${{ github.ref == 'refs/heads/main'}}
+        with:
+          name: ${{ github.event.inputs.version }}
+          tag_name: v${{ github.event.inputs.version }}
+          generate_release_notes: true
+          make_latest: true

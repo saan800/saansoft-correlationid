@@ -2,6 +2,12 @@ name: version
 
 on:
   workflow_call:
+    inputs:
+      version-artifact-name:
+        description: "Name of the artifact to put the version file in"
+        required: false
+        type: string
+        default: "version"
     outputs:
       version:
         description: The new version number
@@ -30,8 +36,19 @@ jobs:
           scheme: conventional_commits
           increment: patch
 
-      - name: display current version
+      - name: Current version
         run: echo "${{ steps.get-version.outputs.current-version }}"
 
-      - name: display new version
-        run: echo "${{ steps.get-version.outputs.version }}"
+      - name: New version
+        id: write_version
+        run: |
+          VERSION="${{ steps.get-version.outputs.version }}"
+          echo "New version: $VERSION"
+          echo $VERSION > version.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+        with:
+          name: ${{ inputs.version-artifact-name }}
+          path: version.txt
+          if-no-files-found: error
