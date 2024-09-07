@@ -36,7 +36,7 @@ jobs:
 
       # Cache .NET dependencies
       - name: Cache .NET packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.nuget/packages # Path to the NuGet package cache
           key: ${{ inputs.os }}-${{ inputs.dotnet-version }}-nuget-${{ hashFiles('**/*.csproj') }}
