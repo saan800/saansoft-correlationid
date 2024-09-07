@@ -3,7 +3,7 @@ changelog:
     labels:
       - no-release
     authors:
-      - octocat
+      - dependabot
   categories:
     - title: 🔥🔥 Breaking Changes 🔥🔥
       labels:
