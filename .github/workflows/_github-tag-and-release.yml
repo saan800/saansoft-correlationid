@@ -1,26 +1,27 @@
-name: tag-and-release
+name: github-tag-and-release
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
+      os:
+        required: false
+        type: string
+        default: ubuntu-latest
       version:
         description: "Version number to tag and release (without the 'v' prefix)"
         required: true
         type: string
-
-  # or trigger on tag action
-  # get version from version-artifact-name
-  # workflow_run:
-  #   workflows: [ci]
-  #   types: [completed]
-  #   branches: [main]
+    secrets:
+      GITHUB_ACCESS_TOKEN:
+        description: "(ie: GITHUB_TOKEN) GitHub token to upload tag and release with"
+        required: true
 
 permissions:
   contents: read
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+  tag-and-release:
+    runs-on: ${{ inputs.os }}
     permissions:
       contents: write
 
@@ -35,7 +36,7 @@ jobs:
 
       - name: Tag
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
         run: |
           VERSION="${{ inputs.version }}"
           git tag -a "v$VERSION" -m "Release version $VERSION"
@@ -43,9 +44,10 @@ jobs:
 
       - name: Github Release
         uses: softprops/action-gh-release@fb2d03176f42a1f0dd433ca263f314051d3edd44 # v2.0.7
-        if: ${{ github.ref == 'refs/heads/main'}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}
         with:
-          name: ${{ github.event.inputs.version }}
-          tag_name: v${{ github.event.inputs.version }}
+          name: ${{ inputs.version }}
+          tag_name: v${{ inputs.version }}
           generate_release_notes: true
           make_latest: true
