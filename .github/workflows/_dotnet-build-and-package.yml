@@ -58,7 +58,7 @@ jobs:
         run: dotnet restore
 
       # Only include assembly version on main branch
-      - name: Package with assembly number: ${{ inputs.package-version }}
+      - name: Package with assembly number
         if: ${{ inputs.add-assembly-version }}
         run: >
           dotnet pack
@@ -71,7 +71,7 @@ jobs:
           /p:AssemblyInformationalVersion=${{ inputs.package-version }}
 
       # Packaging step for non-main branches (without AssemblyVersion)
-      - name: Package without assembly number: ${{ inputs.package-version }}
+      - name: Package without assembly number
         if: ${{ !inputs.add-assembly-version }}
         run: >
           dotnet pack
