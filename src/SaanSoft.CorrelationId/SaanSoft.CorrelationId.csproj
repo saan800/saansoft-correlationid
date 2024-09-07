@@ -1,24 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
 
     <Product>SaanSoft.CorrelationId</Product>
-    <Description>CorrelationId provider interface and class</Description>
-    <Authors>saan800</Authors>
-    <Copyright>Sandra Greenhalgh (c) $([System.DateTime]::Now.ToString(yyyy))</Copyright>
-    <PackageProjectUrl>https://github.com/saan800/saansoft-correlationid</PackageProjectUrl>
-    <Company>$(PackageProjectUrl)</Company>
-    <RepositoryUrl>$(PackageProjectUrl)</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes>See $(PackageProjectUrl)/releases for details.</PackageReleaseNotes>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>CorrelationId provider interface and class. Read more at: $(PackageProjectUrl)/blob/main/src/$(Product)/README.md</Description>
+    <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
     <PackageTags>correlationid;logging;SaanSoft</PackageTags>
-    <RepositoryType>git</RepositoryType>
-
-    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
 
   <ItemGroup>

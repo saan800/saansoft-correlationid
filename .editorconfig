@@ -24,7 +24,10 @@ trim_trailing_whitespace = false
 max_line_length = off
 
 [*.sln, *.csproj, *.ruleset, *.props, *.targets]
-max_line_length = off
+max_line_length = 250
+
+[*.sln]
+indent_style = tab
 
 [*.cs]
 indent_size = 4

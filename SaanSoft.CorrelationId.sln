@@ -1,6 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solution", "_solution", "{63401EBF-A03B-47CD-B5C2-99E334B312E1}"
+	ProjectSection(SolutionItems) = preProject
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		CONTRIBUTING.md = CONTRIBUTING.md
+		dictionary.dic = dictionary.dic
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		LICENSE = LICENSE
+		nuget.config = nuget.config
+		README.md = README.md
+		SECURITY.md = SECURITY.md
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.CorrelationId", "src\SaanSoft.CorrelationId\SaanSoft.CorrelationId.csproj", "{82101F7B-641B-4F7B-9446-57DDFA66A694}"
 EndProject

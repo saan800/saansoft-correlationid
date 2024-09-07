@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "src/**"
+      - "Directory.*.props"
 
 permissions:
   contents: read
@@ -16,7 +17,6 @@ jobs:
     permissions:
       contents: read
       checks: write
-
     uses: ./.github/workflows/_dotnet-build-and-test.yml
     with:
       os-list: "ubuntu-latest, windows-latest"
@@ -25,25 +25,16 @@ jobs:
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  find-version:
-    runs-on: ubuntu-latest
-    needs: build-and-test
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      current-version: ${{ steps.version.outputs.current-version }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+  get-version:
+    uses: ./.github/workflows/_version.yml
 
-      - name: Get next version
-        uses: reecetech/version-increment@a5d65984a6c6e8bbc30ece69d53d96e40736f24c # 2024.9.2
-        id: version
-        with:
-          scheme: conventional_commits
-          increment: patch
-
-      - name: display current version
-        run: echo "${{ steps.version.outputs.current-version }}"
-
-      - name: display new version
-        run: echo "${{ steps.version.outputs.version }}"
+  build-and-package:
+    needs:
+      - build-and-test
+      - get-version
+    uses: ./.github/workflows/_dotnet-build-and-package.yml
+    with:
+      os: ubuntu-latest
+      dotnet-version: 8.0.x
+      package-version: ${{ needs.get-version.outputs.version }}
+      add-assembly-version: ${{ github.ref == 'refs/heads/main' }}
