@@ -16,7 +16,6 @@ jobs:
     permissions:
       contents: read
       checks: write
-
     uses: ./.github/workflows/_dotnet-build-and-test.yml
     with:
       os-list: "ubuntu-latest, windows-latest"
@@ -26,42 +25,39 @@ jobs:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   find-version:
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.get-version.outputs.version }}
-      assembly-version: ${{ steps.get-assembly-version.outputs.assembly-version }}
-      current-version: ${{ steps.get-version.outputs.current-version }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+    uses: ./.github/workflows/_version.yml
 
-      - name: Get next version
-        uses: reecetech/version-increment@a5d65984a6c6e8bbc30ece69d53d96e40736f24c # 2024.9.2
-        id: get-version
-        with:
-          scheme: conventional_commits
-          increment: patch
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
-      - name: Modify version and set assembly version
-        id: get-assembly-version
-        run: |
-          # Capture the version output from previous step
-          version="${{ steps.get-version.outputs.version }}"
+    #   - name: Get next version
+    #     uses: reecetech/version-increment@a5d65984a6c6e8bbc30ece69d53d96e40736f24c # 2024.9.2
+    #     id: get-version
+    #     with:
+    #       scheme: conventional_commits
+    #       increment: patch
 
-          # Replace '-pre' with ''
-          modified_version=$(echo "$version" | sed 's/-pre//')
+    #   - name: Modify version and set assembly version
+    #     id: get-assembly-version
+    #     run: |
+    #       # Capture the version output from previous step
+    #       version="${{ steps.get-version.outputs.version }}"
 
-          # Set the modified version as output
-          echo "::set-output name=assembly-version::$modified_version"
+    #       # Replace '-pre' with ''
+    #       modified_version=$(echo "$version" | sed 's/-pre//')
 
-      - name: display current version
-        run: echo "${{ steps.get-version.outputs.current-version }}"
+    #       # Set the modified version as output
+    #       echo "::set-output name=assembly-version::$modified_version"
 
-      - name: display new version
-        run: echo "${{ steps.get-version.outputs.version }}"
+    #   - name: display current version
+    #     run: echo "${{ steps.get-version.outputs.current-version }}"
 
-      - name: display new assembly version
-        run: echo "${{ steps.get-assembly-version.outputs.assembly-version }}"
+    #   - name: display new version
+    #     run: echo "${{ steps.get-version.outputs.version }}"
+
+    #   - name: display new assembly version
+    #     run: echo "${{ steps.get-assembly-version.outputs.assembly-version }}"
 
   build-and-package:
     needs:

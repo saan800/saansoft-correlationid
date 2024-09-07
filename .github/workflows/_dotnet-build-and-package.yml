@@ -48,7 +48,7 @@ jobs:
           --configuration Release
           --output build-pacakges
           /p:Version=${{ inputs.package-version }}
-          /p:FileVersion=${{ inputs.package-version }}
+          /p:FileVersion=${{ inputs.assembly-version }}
           /p:AssemblyVersion=${{ inputs.assembly-version }}
           /p:AssemblyInformationalVersion=${{ inputs.assembly-version }}
 
