@@ -48,5 +48,5 @@ jobs:
       dotnet-version: 8.0.x
       package-artifact-name: "packages"
       upload-to-github: true
-    # secrets:
-    #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    secrets:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
