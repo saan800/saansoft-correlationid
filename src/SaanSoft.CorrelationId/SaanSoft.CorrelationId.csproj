@@ -5,12 +5,12 @@
 
     <Product>SaanSoft.CorrelationId</Product>
     <!-- <Description>CorrelationId provider interface and class. Read more at: $(PackageProjectUrl)/blob/main/src/$(Product)/README.md</Description> -->
-    <PackageReadmeFile>src\SaanSoft.CorrelationId\\README.md</PackageReadmeFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>correlationid;logging;SaanSoft</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="README.md" Pack="true" PackagePath="\">
+    <None Include="README.md" Pack="true" PackagePath="\">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
