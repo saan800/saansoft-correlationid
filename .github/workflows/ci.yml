@@ -37,4 +37,19 @@ jobs:
       os: ubuntu-latest
       dotnet-version: 8.0.x
       package-version: ${{ needs.get-version.outputs.version }}
+      package-artifact-name: "packages"
       add-assembly-version: ${{ github.ref == 'refs/heads/main' }}
+
+  publish:
+    needs: build-and-package
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/_dotnet-publish-package.yml
+    with:
+      os: ubuntu-latest
+      dotnet-version: 8.0.x
+      package-artifact-name: "packages"
+      upload-to-github: true
+    secrets:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
