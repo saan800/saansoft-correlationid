@@ -1,4 +1,4 @@
-name: ci
+name: ci-cd
 
 on:
   pull_request:
@@ -51,5 +51,19 @@ jobs:
       dotnet-version: 8.0.x
       package-artifact-name: "packages"
       upload-to-github: true
+      # upload-to-nuget: ${{ github.ref == 'refs/heads/main'}}
+    secrets:
+      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    needs:
+      - publish
+      - get-version
+    if: ${{ github.ref == 'refs/heads/main'}}
+    permissions:
+      contents: write
+    uses: ./.github/workflows/_github-tag-and-release.yml
+    with:
+      version: ${{ needs.get-version.outputs.version }}
     secrets:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
