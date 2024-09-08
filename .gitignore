@@ -13,6 +13,7 @@
 # For more VS gitignore rules: https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 .vs/
+.mono/
 
 *.DotSettings
 *.suo
@@ -23,9 +24,6 @@
 ################# JetBrains Rider ################
 # For more Rider gitignore rules: https://github.com/JetBrains/resharper-rider-samples/blob/master/.gitignore
 #.idea/
-
-################## Visual Studio #################
-.mono/
 
 
 # ********************************************** #
@@ -41,6 +39,7 @@ tmp
 node_modules
 packages
 build-packages
+.DS_Store
 
 # .NET
 bin
