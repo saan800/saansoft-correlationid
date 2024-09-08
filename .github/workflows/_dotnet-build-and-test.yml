@@ -100,13 +100,11 @@ jobs:
       - name: Restore packages
         run: dotnet restore
 
-      - name: Build
-        run: dotnet build --no-restore --configuration Release
-
-      - name: Run unit tests
+      - name: Build and run unit tests
         run: >
           dotnet test
-          --no-build
+          --no-restore
+          --configuration Release
           --logger "GitHubActions;summary.includePassedTests=true;summary.includeSkippedTests=true;annotations.titleFormat=@test;annotations.messageFormat=@error\n@trace"
           /p:CollectCoverage=true
           --
