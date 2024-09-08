@@ -4,7 +4,7 @@
     <IsPackable>true</IsPackable>
 
     <Product>SaanSoft.CorrelationId</Product>
-    <!-- <Description>CorrelationId provider interface and class. Read more at: $(PackageProjectUrl)/blob/main/src/$(Product)/README.md</Description> -->
+    <Description>CorrelationId provider interface and class.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>correlationid;logging;SaanSoft</PackageTags>
   </PropertyGroup>

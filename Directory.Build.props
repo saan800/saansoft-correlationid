@@ -6,13 +6,13 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Nullable>enable</Nullable>
-    <IsPackable>false</IsPackable>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
     <IsTestProject Condition="'$(IsTestProject)' == ''">false</IsTestProject>
-    <IsTestProject Condition="$(MSBuildProjectName.StartsWith('Tests.'))">true</IsTestProject>
-    <IsPackable Condition="'$(IsPackable)' == ''">false</IsPackable>
+    <IsTestProject Condition="$(MSBuildProjectName.StartsWith('SaanSoft.Tests.'))">true</IsTestProject>
+    <IsPackable Condition="'$(IsTestProject)' == 'true'">false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(IsPackable)' == 'true' ">
