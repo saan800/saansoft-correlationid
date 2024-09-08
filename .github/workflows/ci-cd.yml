@@ -19,64 +19,13 @@ jobs:
       packages: write
     uses: saan800/github/.github/workflows/dotnet-build-test-package-publish.yml@main
     with:
-      #os-list: "ubuntu-latest, windows-latest"
+      os-list: "ubuntu-latest, windows-latest"
+      os: ubuntu-latest
       dotnet-version-list: "6.0.x, 7.0.x, 8.0.x"
+      dotnet-version: 8.0.x
       codecov-slug: "saan800/saansoft-correlationId"
       is-release: ${{ github.ref == 'refs/heads/main' }}
     secrets:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       NUGET_API_KEY: ${{ secrets.NUGET_TOKEN }}
-
-  # build-and-test:
-  #   uses: saan800/github/.github/workflows/_dotnet-build-and-test.yml@main
-  #   with:
-  #     os-list: "ubuntu-latest, windows-latest"
-  #     dotnet-version-list: "6.0.x, 7.0.x, 8.0.x"
-  #     codecov-slug: "saan800/saansoft-correlationId"
-  #   secrets:
-  #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-  # get-version:
-  #   uses: saan800/github/.github/workflows/_version.yml@main
-
-  # build-and-package:
-  #   needs:
-  #     - build-and-test
-  #     - get-version
-  #   uses: saan800/github/.github/workflows/_dotnet-build-and-package.yml@main
-  #   with:
-  #     os: ubuntu-latest
-  #     dotnet-version: 8.0.x
-  #     package-version: ${{ needs.get-version.outputs.version }}
-  #     package-artifact-name: "packages"
-  #     add-assembly-version: ${{ github.ref == 'refs/heads/main' }}
-
-  # publish:
-  #   needs: build-and-package
-  #   permissions:
-  #     contents: read
-  #     packages: write
-  #   uses: saan800/github/.github/workflows/_dotnet-publish-package.yml@main
-  #   with:
-  #     os: ubuntu-latest
-  #     dotnet-version: 8.0.x
-  #     package-artifact-name: "packages"
-  #     upload-to-github: ${{ github.ref != 'refs/heads/main'}}
-  #     upload-to-nuget: ${{ github.ref == 'refs/heads/main'}}
-  #   secrets:
-  #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #     NUGET_API_KEY: ${{ secrets.NUGET_TOKEN }}
-
-  # release:
-  #   needs:
-  #     - publish
-  #     - get-version
-  #   if: ${{ github.ref == 'refs/heads/main'}}
-  #   permissions:
-  #     contents: write
-  #   uses: saan800/github/.github/workflows/_github-tag-and-release.yml@main
-  #   with:
-  #     version: ${{ needs.get-version.outputs.version }}
-  #   secrets:
-  #     GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
