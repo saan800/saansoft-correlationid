@@ -14,7 +14,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  pr-triage:
+  pr:
     permissions:
       contents: read
       pull-requests: write
