@@ -66,6 +66,8 @@ jobs:
           # event triggers in your workflow.
           ignoreLabels: |
             dependencies
+          # allow the use of the "[WIP] feat: some new feature" syntax
+          wip: true
 
       # https://github.com/marketplace/actions/semantic-pull-request
       # - name: Validate PR title
