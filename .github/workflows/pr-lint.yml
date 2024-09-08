@@ -37,6 +37,8 @@ jobs:
           VALIDATE_EDITORCONFIG: true
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_YAML: true
+          GITHUB_ACTIONS_COMMAND_ARGS: --ignore 'Double quote to prevent globbing and word splitting'
+          ENABLE_GITHUB_ACTIONS_STEP_SUMMARY: true
 
   spell-check:
     permissions:
