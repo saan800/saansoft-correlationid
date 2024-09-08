@@ -106,8 +106,7 @@ jobs:
       - name: Run unit tests
         run: >
           dotnet test
-          --no-restore
-          --configuration Release
+          --no-build
           --logger "GitHubActions;summary.includePassedTests=true;summary.includeSkippedTests=true;annotations.titleFormat=@test;annotations.messageFormat=@error\n@trace"
           /p:CollectCoverage=true
           --
