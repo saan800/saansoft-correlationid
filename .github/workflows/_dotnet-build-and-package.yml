@@ -65,7 +65,7 @@ jobs:
           dotnet pack
           --no-restore
           --configuration Release
-          --output build-pacakges
+          --output build-packages
           /p:Version=${{ inputs.package-version }}
           /p:FileVersion=${{ inputs.package-version }}
           /p:AssemblyVersion=${{ inputs.package-version }}
@@ -78,12 +78,12 @@ jobs:
           dotnet pack
           --no-restore
           --configuration Release
-          --output build-pacakges
+          --output build-packages
           /p:Version=${{ inputs.package-version }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
         with:
           name: ${{ inputs.package-artifact-name }}
-          path: build-pacakges/*.nupkg
+          path: build-packages/*
           if-no-files-found: error
