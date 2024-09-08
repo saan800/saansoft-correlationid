@@ -74,19 +74,13 @@ jobs:
         if: ${{ inputs.upload-to-github }}
         run: >
           dotnet nuget push ./build-packages/*.snupkg
+          --skip-duplicate
           --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
           --api-key ${{ secrets.GITHUB_ACCESS_TOKEN }}
 
-      - name: Publish nuget package(s) to NuGet.org
+      - name: Publish nuget and symbols package(s) to NuGet.org
         if: ${{ inputs.upload-to-nuget }}
         run: >
           dotnet nuget push ./build-packages/*.nupkg
-          --source https://api.nuget.org/v3/index.json
-          --api-key ${{ secrets.NUGET_API_KEY }}
-
-      - name: Publish symbol package(s) to NuGet.org
-        if: ${{ inputs.upload-to-nuget }}
-        run: >
-          dotnet nuget push ./build-packages/*.snupkg
           --source https://api.nuget.org/v3/index.json
           --api-key ${{ secrets.NUGET_API_KEY }}
