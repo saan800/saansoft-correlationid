@@ -8,14 +8,18 @@ permissions:
 jobs:
   super-linter:
     runs-on: ubuntu-latest
-    permissions:
-      packages: read
+    # permissions:
+    #   packages: read
 
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
         with:
-          egress-policy: audit
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            api.github.com:443
+            github.com:443
 
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
@@ -37,16 +41,21 @@ jobs:
           VALIDATE_EDITORCONFIG: true
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_YAML: true
+          GITHUB_ACTIONS_COMMAND_ARGS: --ignore 'Double quote to prevent globbing and word splitting'
+          ENABLE_GITHUB_ACTIONS_STEP_SUMMARY: true
 
   spell-check:
-    permissions:
-      pull-requests: read # for streetsidesoftware/cspell-action to fetch commits for PR
+    # permissions:
+    #   pull-requests: read # for streetsidesoftware/cspell-action to fetch commits for PR
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@5c7944e73c4c2a096b17a9cb74d65b6c2bbafbde # v2.9.1
         with:
-          egress-policy: audit
+          disable-sudo: true
+          egress-policy: block
+          allowed-endpoints: >
+            github.com:443
 
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
