@@ -14,6 +14,9 @@ permissions:
 
 jobs:
   ci-cd:
+    permissions:
+      contents: write
+      packages: write
     uses: saan800/github/.github/workflows/dotnet-build-test-package-publish.yml@main
     with:
       #os-list: "ubuntu-latest, windows-latest"
