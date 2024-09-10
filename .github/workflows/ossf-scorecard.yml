@@ -48,6 +48,7 @@ jobs:
             api.osv.dev:443
             api.scorecard.dev:443
             auth2.sigstore.dev:443
+            oauth2.sigstore.dev:443
             fulcio.sigstore.dev:443
             github.com:443
             oss-fuzz-build-logs.storage.googleapis.com:443
