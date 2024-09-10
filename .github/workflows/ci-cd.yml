@@ -17,7 +17,7 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: saan800/github/.github/workflows/dotnet-build-test-package-publish.yml@main
+    uses: saan800/github/.github/workflows/_dotnet-build-test-package-publish.yml@main
     with:
       os-list: "ubuntu-latest, windows-latest"
       os: ubuntu-latest
