@@ -2,6 +2,7 @@ abbrev
 bson
 codecov
 color
+correlationid
 nojournal
 opencover
 prexisting

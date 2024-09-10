@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
 namespace SaanSoft.CorrelationId.HttpHeader;
@@ -65,8 +64,3 @@ public class CorrelationIdHeaderMiddleware(RequestDelegate next)
         => !string.IsNullOrWhiteSpace(val) ? val.Trim() : null;
 }
 
-public static class CorrelationIdHeaderMiddlewarextensions
-{
-    public static IApplicationBuilder UseCorrelationIdHeaderMiddleware(this IApplicationBuilder builder)
-        => builder.UseMiddleware<CorrelationIdHeaderMiddleware>();
-}
