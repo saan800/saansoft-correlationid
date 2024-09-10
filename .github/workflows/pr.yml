@@ -21,10 +21,7 @@ jobs:
       contents: read
     uses: saan800/github/.github/workflows/_pr-lint.yml@main
     with:
-      validate-csharp: true
-      validate-editorconfig: true
-      validate-github-actions: true
-      validate-yaml: true
+      run-lint: true
       cspell-config: .cspell.json
     secrets:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
