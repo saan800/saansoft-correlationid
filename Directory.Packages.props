@@ -10,20 +10,11 @@
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.1"/>
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[6.0.0, 7.0.0)" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="[6.0.0, 7.0.0)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="[6.0.0, 7.0.0)" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[7.0.0, 8.0.0)" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="[7.0.0, 8.0.0)" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="[7.0.0, 8.0.0)" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[8.0.0, )" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="[8.0.0, )" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="[8.0.0, )" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[8.0.0, 9.0.0)" />
   </ItemGroup>
   <ItemGroup Condition=" '$(IsTestProject)' == 'true' ">
     <PackageReference Include="coverlet.collector">
