@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+
+    <Product>SaanSoft.CorrelationId.HttpHeader</Product>
+    <Description>Middleware to extract the CorrelationId from Http Headers and set in the ICorrelationidProvider.</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>correlationid;logging;SaanSoft;http header;api;web</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaanSoft.CorrelationId\SaanSoft.CorrelationId.csproj" />
+  </ItemGroup>
+</Project>

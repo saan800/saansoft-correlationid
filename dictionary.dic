@@ -2,6 +2,7 @@ abbrev
 bson
 codecov
 color
+correlationid
 nojournal
 opencover
 prexisting
@@ -9,5 +10,6 @@ Saan
 SaanSoft
 Specflow
 signoff
+traceparent
 unittests
 Xunit

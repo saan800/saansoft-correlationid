@@ -23,12 +23,12 @@ serviceCollection.AddScoped<ICorrelationIdProvider, CorrelationIdProvider>();
 
 ## Usage
 
-Pass `ICorrelationIdProvider` into the class's constructor, then call `correlationIdProvider.Get()` 
+Pass `ICorrelationIdProvider` into a class's constructor, then call `correlationIdProvider.Get()` 
 to retrieve the `CorrelationId` for the current request.
 
 ## Dependencies
 
 `CorrelationIdProvider` can be used by itself, and it will provide a unique string for each request.
 
-However, you can also setup `CorrelationIdProvider` to use values from other sources such as HTTP request header by using other dependencies and middleware.
+However, you can also setup `CorrelationIdProvider` to use values from other sources such as [SaanSoft.CorrelationId.HttpHeader](https://github.com/saan800/saansoft-correlationid/blob/main/src/SaanSoft.CorrelationId.HttpHeader/README.md) by using other dependencies and middleware. 
 

@@ -9,4 +9,8 @@ A `CorrelationId` bundles each logical transaction as it moves through multiple 
 
 With this system, your client's requests are collected under one value for easier tracking and troubleshooting.
 
-Depending on the `ICorrelationIdProvider` configured you can extract the value from HTTP request headers or OpenTelemetry tracing for greater ease of tracking the transaction, or simply default to a generated GUID string.
+Depending on how the `ICorrelationIdProvider` is configured you can extract the value from HTTP request headers and/or OpenTelemetry tracing for greater ease of tracking the transaction, or simply default to a generated GUID string.
+
+For more details check the readme in each package:
+* [SaanSoft.CorrelationId](./src/SaanSoft.CorrelationId/README.md)
+* [SaanSoft.CorrelationId.HttpHeader](./src/SaanSoft.CorrelationId.HttpHeader/README.md)

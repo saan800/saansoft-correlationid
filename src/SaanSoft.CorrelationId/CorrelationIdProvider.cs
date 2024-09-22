@@ -9,14 +9,21 @@ public class CorrelationIdProvider : ICorrelationIdProvider
 
     public void Set(string correlationId)
     {
-        if (string.IsNullOrWhiteSpace(correlationId)) return;
+        if (
+            !string.IsNullOrWhiteSpace(_correlationId) ||
+            string.IsNullOrWhiteSpace(correlationId)
+        )
+        {
+            return;
+        }
 
         correlationId = correlationId.Trim();
-        var distinctChars = correlationId.Distinct();
+        var distinctChars = correlationId.Distinct().ToList();
+
         // ie "00000000"
-        if (distinctChars.Count() == 1 && distinctChars.Contains('0')) return;
+        if (distinctChars.Count == 1 && distinctChars.Contains('0')) return;
         // ie Guid.Empty
-        if (distinctChars.Count() == 2 && distinctChars.Contains('0') && distinctChars.Contains('-')) return;
+        if (distinctChars.Count == 2 && distinctChars.Contains('0') && distinctChars.Contains('-')) return;
 
         _correlationId = correlationId;
     }
