@@ -21,7 +21,7 @@ jobs:
     with:
       os-list: "ubuntu-latest, windows-latest"
       os: ubuntu-latest
-      dotnet-version-list: "6.0.x, 7.0.x, 8.0.x"
+      dotnet-version-list: "7.0.x, 8.0.x"
       dotnet-version: 8.0.x
       codecov-slug: "saan800/saansoft-correlationId"
       is-release: ${{ github.ref == 'refs/heads/main' }}
