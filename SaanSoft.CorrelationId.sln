@@ -21,7 +21,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.Tests.CorrelationI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.Tests.CorrelationId.Common", "test\SaanSoft.Tests.CorrelationId.Common\SaanSoft.Tests.CorrelationId.Common.csproj", "{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.CorrelationId.HttpHeader", "src\SaanSoft.CorrelationId.HttpHeader\SaanSoft.CorrelationId.HttpHeader.csproj", "{7507B5A7-2CC4-442C-A42C-B5523B98483C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.CorrelationId.Web", "src\SaanSoft.CorrelationId.Web\SaanSoft.CorrelationId.Web.csproj", "{7507B5A7-2CC4-442C-A42C-B5523B98483C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.Tests.CorrelationId.Web", "test\SaanSoft.Tests.CorrelationId.Web\SaanSoft.Tests.CorrelationId.Web.csproj", "{47E472D6-99E6-4636-94E7-6A7ECADD3A0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +47,14 @@ Global
 		{7507B5A7-2CC4-442C-A42C-B5523B98483C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7507B5A7-2CC4-442C-A42C-B5523B98483C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7507B5A7-2CC4-442C-A42C-B5523B98483C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E472D6-99E6-4636-94E7-6A7ECADD3A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E472D6-99E6-4636-94E7-6A7ECADD3A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E472D6-99E6-4636-94E7-6A7ECADD3A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E472D6-99E6-4636-94E7-6A7ECADD3A0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{31889625-3724-44C6-B426-FF0C031C2FC7} = {A1F9D39E-7FAB-4D65-8DE7-C29511D4C024}
 		{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B} = {A1F9D39E-7FAB-4D65-8DE7-C29511D4C024}
+		{47E472D6-99E6-4636-94E7-6A7ECADD3A0F} = {A1F9D39E-7FAB-4D65-8DE7-C29511D4C024}
 	EndGlobalSection
 EndGlobal

@@ -12,5 +12,6 @@ With this system, your client's requests are collected under one value for easie
 Depending on how the `ICorrelationIdProvider` is configured you can extract the value from HTTP request headers and/or OpenTelemetry tracing for greater ease of tracking the transaction, or simply default to a generated GUID string.
 
 For more details check the readme in each package:
-* [SaanSoft.CorrelationId](./src/SaanSoft.CorrelationId/README.md)
-* [SaanSoft.CorrelationId.HttpHeader](./src/SaanSoft.CorrelationId.HttpHeader/README.md)
+
+- [SaanSoft.CorrelationId](./src/SaanSoft.CorrelationId/README.md)
+- [SaanSoft.CorrelationId.Web](./src/SaanSoft.CorrelationId.Web/README.md)

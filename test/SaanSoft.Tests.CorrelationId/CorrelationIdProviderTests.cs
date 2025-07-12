@@ -27,22 +27,11 @@ public class CorrelationIdProviderTests
     }
 
     [Theory]
-    [InlineAutoData]
-    public void Setting_twice_only_does_not_reset_the_value_nce_set(string val1, string val2)
-    {
-        _provider.Set(val1);
-        _provider.Set(val2);
-
-        var result = _provider.Get();
-        result.Should().Be(val1);
-    }
-
-    [Theory]
     [InlineData("")]
     [InlineData("   ")]
     [InlineData("000000")]
     [InlineData("00000000-0000-0000-0000-000000000000")]
-    public void Set_and_Get_invalid_value_returns_default_guid_new(string val)
+    public void Set_and_Get_invalid_value_returns_new_guid_by_default(string val)
     {
         _provider.Set(val);
 
@@ -50,6 +39,8 @@ public class CorrelationIdProviderTests
         result.Should().NotBeNullOrWhiteSpace();
         result.Should().NotBe(val);
         result.Should().NotBe(Guid.Empty.ToString());
+
         Guid.TryParse(result, out _).Should().BeTrue();
+        Guid.Parse(result).Should().NotBe(Guid.Empty);
     }
 }

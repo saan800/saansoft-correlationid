@@ -1,36 +1,23 @@
 namespace SaanSoft.CorrelationId;
 
-/// <summary>
-/// If no correlationId is set, it will default to `Guid.NewGuid().ToString()` to ensure a value is always provided
-/// </summary>
+/// <inheritdoc/>
 public class CorrelationIdProvider : ICorrelationIdProvider
 {
     private string? _correlationId;
 
+    /// <inheritdoc/>
     public void Set(string correlationId)
     {
-        if (
-            !string.IsNullOrWhiteSpace(_correlationId) ||
-            string.IsNullOrWhiteSpace(correlationId)
-        )
-        {
-            return;
-        }
-
-        correlationId = correlationId.Trim();
-        var distinctChars = correlationId.Distinct().ToList();
-
-        // ie "00000000"
-        if (distinctChars.Count == 1 && distinctChars.Contains('0')) return;
-        // ie Guid.Empty
-        if (distinctChars.Count == 2 && distinctChars.Contains('0') && distinctChars.Contains('-')) return;
-
-        _correlationId = correlationId;
+        if (!correlationId.IsValidCorrelationId()) return;
+        _correlationId = correlationId.Trim();
     }
 
+    /// <inheritdoc/>
     public string Get()
     {
-        if (string.IsNullOrWhiteSpace(_correlationId)) _correlationId = Guid.NewGuid().ToString();
-        return _correlationId;
+        if (!_correlationId.IsValidCorrelationId()) _correlationId = Guid.NewGuid().ToString();
+
+        // ReSharper disable once NullableWarningSuppressionIsUsed
+        return _correlationId!;
     }
 }

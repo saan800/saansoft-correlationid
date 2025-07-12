@@ -3,8 +3,8 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
 
-    <Product>SaanSoft.CorrelationId.HttpHeader</Product>
-    <Description>Middleware to extract the CorrelationId from Http Headers and set in the ICorrelationidProvider.</Description>
+    <Product>SaanSoft.CorrelationId.Web</Product>
+    <Description>Middleware to extract the CorrelationId from Http Context and Headers and set in the ICorrelationidProvider.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>correlationid;logging;SaanSoft;http header;api;web</PackageTags>
   </PropertyGroup>
