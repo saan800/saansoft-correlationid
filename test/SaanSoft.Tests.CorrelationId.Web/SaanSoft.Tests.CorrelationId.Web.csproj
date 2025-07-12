@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SaanSoft.CorrelationId.Web\SaanSoft.CorrelationId.Web.csproj" />
+    <ProjectReference Include="..\SaanSoft.Tests.CorrelationId.Common\SaanSoft.Tests.CorrelationId.Common.csproj" />
+  </ItemGroup>
+</Project>
