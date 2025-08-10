@@ -12,17 +12,27 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[7.0.0, 8.0.0)" />
-    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="[7.0.0, 8.0.0)" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[8.0.0, 9.0.0)" />
-    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="[8.0.0, 9.0.0)" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="[9.0.0, 10.0.0)" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(IsTestProject)' == 'true' and '$(TargetFramework)' == 'net7.0'">
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="[7.0.0, 8.0.0)" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(IsTestProject)' == 'true' and '$(TargetFramework)' == 'net8.0'">
+    <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="[8.0.0, 9.0.0)" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(IsTestProject)' == 'true' and '$(TargetFramework)' == 'net9.0'">
     <PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="[9.0.0, 10.0.0)" />
   </ItemGroup>
+
   <ItemGroup Condition=" '$(IsTestProject)' == 'true' ">
+    <PackageReference Include="AutoFixture.AutoFakeItEasy" />
+    <PackageReference Include="AutoFixture.Xunit2" />
     <PackageReference Include="coverlet.collector">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -31,11 +41,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="FluentAssertions" />
     <PackageReference Include="GitHubActionsTestLogger">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>

@@ -8,13 +8,13 @@ A `CorrelationId` (or some systems call it `TraceId`) is metadata than can be us
 
 With this system, your client's requests are collected under one value for easier tracking and troubleshooting.
 
-Use `WebCorrelationIdMiddleware` to extract the `CorrelationId` from HTTP context and/or headers, and set the `ICorrelationIdProvider` to use that value.
+Use `WebCorrelationIdMiddleware` to extract the `CorrelationId` from HTTP context and/or headers, and:
+* set the `ICorrelationIdProvider` to use that value
+* optionally set a response header with the `CorrelationId` (enabled by default)
+* optionally add the `CorrelationId` to `ILogger.BeginScope` so all structured logs have the `CorrelationId` on them (enabled by default)
 
-Use `WebCorrelationIdOptions` to configure how the `CorrelationId` is extracted from the HTTP request. The first valid match is used.
-
-- `HttpContext.TraceIdentifier`: The default ASP.NET Core trace identifier
-- `traceparent`: From the [W3C Tract Context](https://www.w3.org/TR/trace-context-2/#traceparent-header) spec. Extract the `trace-id` value for use as the `CorrelationId`
-- The value of other header names (eg `x-correlation-id`)
+Use `WebCorrelationIdOptions.Evaluators` to configure how the `CorrelationId` is extracted from the HTTP request. 
+The first valid match is used. If no match is found, `WebCorrelationIdMiddleware` will generate a random string instead.
 
 ## Use in your Api or Website
 
@@ -36,3 +36,13 @@ app.UseWebCorrelationIdMiddleware(new WebCorrelationIdOptions {
 });
 ...
 ```
+
+### Evaluators
+
+When registering `WebCorrelationIdMiddleware`, you can provide zero or more evaluators in the options.
+
+The `Evaluators` are short functions which attempt to get the `CorrelationId` from `HttpContext`.
+Such as from a request header, or dotnet's built in `Activity.Current`.
+
+Common evaluators can be found in `SaanSoft.CorrelationId.Web.Evaluator`, but you can 
+provide your own if desired.
