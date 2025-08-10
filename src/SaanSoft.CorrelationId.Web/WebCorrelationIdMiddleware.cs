@@ -1,103 +1,69 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace SaanSoft.CorrelationId.Web;
 
 /// <summary>
-/// Get the CorrelationId for each http request (uses the first valid match according to <see cref="WebCorrelationIdOptions"/>)
-/// If can't find a CorrelationId from the http context or request details, it will default to a unique random string
+/// Get the CorrelationId for each http request (uses the first valid match from <see cref="WebCorrelationIdOptions.Evaluators"/>)
+/// If can't find a CorrelationId from the Evaluators, it will default to a unique random string
 /// Sets the CorrelationId on the <see cref="ICorrelationIdProvider"/>
 /// </summary>
 public class WebCorrelationIdMiddleware(RequestDelegate next, WebCorrelationIdOptions? options = null)
 {
     private readonly WebCorrelationIdOptions _options = options ?? new WebCorrelationIdOptions();
 
-    public async Task InvokeAsync(HttpContext context, ICorrelationIdProvider correlationIdProvider)
+    public async Task InvokeAsync(HttpContext httpContext, ICorrelationIdProvider correlationIdProvider)
     {
-        string? correlationId = null;
-        if (_options.UseHttpContext) correlationId = GetCorrelationIdFromHttpContext(context);
+        // try evaluators to find a correlationId
+        string? correlationId = _options.Evaluators
+            .Select(evaluator => evaluator.Invoke(httpContext))
+            .FirstOrDefault(result => result.IsValidCorrelationId());
 
-        // no correlationId yet, check the various headers in order
-        if (!correlationId.IsValidCorrelationId())
+        // still nothing - just use guid generated value
+        if (string.IsNullOrWhiteSpace(correlationId) || !correlationId.IsValidCorrelationId())
         {
-            var headerExtractions = new Dictionary<string, Func<string?, string?>>();
-            if (_options.UseTraceParentHeader)
-            {
-                headerExtractions.Add("traceparent", ExtractTraceParentTraceIdFromHeader);
-            }
-            foreach (var headerName in _options.HeaderNames.Distinct())
-            {
-                headerExtractions.Add(headerName, ExtractValue);
-            }
-
-            correlationId = GetCorrelationIdFromHeader(context, headerExtractions);
+            correlationId = Guid.NewGuid().ToString("N"); // N: removes "-" from guid
         }
 
-        if (string.IsNullOrWhiteSpace(correlationId)) correlationId = Guid.NewGuid().ToString();
         correlationIdProvider.Set(correlationId);
 
-        // Call the next delegate/middleware in the pipeline.
-        await next(context);
-    }
-
-    /// <remarks>
-    /// For more details read https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext.traceidentifier
-    /// </remarks>
-    private static string? GetCorrelationIdFromHttpContext(HttpContext context)
-    {
-        return context.TraceIdentifier.IsValidCorrelationId()
-            ? context.TraceIdentifier
-            : null;
-    }
-
-    /// <summary>
-    /// Check supplied headers exist and extract the correlationId.
-    /// Returns first valid match
-    /// </summary>
-    private static string? GetCorrelationIdFromHeader(HttpContext context, Dictionary<string, Func<string?, string?>> headerExtractions)
-    {
-        var headerKeys = context.Request.Headers.Keys;
-        foreach (var (key, extractFunc) in headerExtractions)
+        if (!string.IsNullOrWhiteSpace(_options.ResponseHeaderName))
         {
-            var matchingHeaderKey =
-                headerKeys.FirstOrDefault(x => string.Equals(x, key, StringComparison.OrdinalIgnoreCase));
-
-            if (!string.IsNullOrWhiteSpace(matchingHeaderKey) && context.Request.Headers.TryGetValue(matchingHeaderKey, out var foundHeader))
+            httpContext.Response.OnStarting(() =>
             {
-                var correlationId = extractFunc(foundHeader.FirstOrDefault());
-                if (correlationId.IsValidCorrelationId())
+                // don't overwrite an existing correlationId, unless specifically configured to do so
+                if (_options.OverrideResponseHeader ||
+                    !httpContext.Response.Headers.ContainsKey(_options.ResponseHeaderName))
                 {
-                    return correlationId;
+                    httpContext.Response.Headers[_options.ResponseHeaderName] = correlationId;
                 }
-            }
+                return Task.CompletedTask;
+            });
         }
 
-        return null;
+        ILogger? logger = null;
+        if (_options.AddCorrelationIdToLoggerScope)
+        {
+            var loggerFactory = httpContext.RequestServices.GetService<ILoggerFactory>();
+            logger = loggerFactory?.CreateLogger<WebCorrelationIdMiddleware>();
+        }
+
+        if (logger != null)
+        {
+            using (logger.BeginScope(new Dictionary<string, object>
+            {
+                ["CorrelationId"] = correlationId
+            }))
+            {
+                logger.LogDebug("Started request with CorrelationId {CorrelationId}", correlationId);
+                await next(httpContext);
+            }
+        }
+        else
+        {
+            await next(httpContext);
+        }
     }
-
-    /// <summary>
-    /// The traceparent header is a commonly used W3C standard to track requests across systems
-    /// and uses the format: `[VERSION]-[TRACE_ID]-[PARENT_ID]-[TRACE_FLAGS]`.
-    ///
-    /// `TRACE_ID` is the equivalent of the CorrelationId
-    /// </summary>
-    /// <remarks>
-    /// For more details read https://www.w3.org/TR/trace-context-2/#traceparent-header
-    /// </remarks>
-    private static string? ExtractTraceParentTraceIdFromHeader(string? val)
-    {
-        if (string.IsNullOrWhiteSpace(val)) return null;
-
-        var parts = val.Split("-");
-        return parts.Length >= 2
-            // currently there is only version="00" - where the second item is the "trace-id"
-            ? parts[1].Trim()
-            : null;
-    }
-
-    /// <summary>
-    /// Use the value of the header
-    /// </summary>
-    private static string? ExtractValue(string? val)
-        => !string.IsNullOrWhiteSpace(val) ? val.Trim() : null;
 }
 

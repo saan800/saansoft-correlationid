@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using SaanSoft.CorrelationId;
 using SaanSoft.CorrelationId.Web;
 
@@ -15,13 +16,9 @@ public class WebCorrelationIdMiddlewareTests
     private HttpClient _httpClient;
 
     [Fact]
-    public async Task Options_all_disabled_should_return_guid_string()
+    public async Task No_evaluators_should_return_guid_string()
     {
-        Setup(new WebCorrelationIdOptions
-        {
-            UseHttpContext = false,
-            UseTraceParentHeader = false
-        });
+        Setup(new WebCorrelationIdOptions());
         await _httpClient.GetAsync("/");
 
         // Assert
@@ -31,13 +28,12 @@ public class WebCorrelationIdMiddlewareTests
 
     [Theory]
     [InlineAutoData]
-    public async Task Options_UseHttpContext_enabled_should_return_HttpContext_TraceIdentifier(string httpContextTraceIdentifier)
+    public async Task Options_UseHttpContextTractIdentifier_should_return_HttpContext_TraceIdentifier(string httpContextTraceIdentifier)
     {
         Setup(
             new WebCorrelationIdOptions
             {
-                UseHttpContext = true,
-                UseTraceParentHeader = false
+                Evaluators = [Evaluator.UseHttpContextTraceIdentifier]
             },
             httpContextTraceIdentifier
         );
@@ -48,45 +44,14 @@ public class WebCorrelationIdMiddlewareTests
         result.Should().Be(httpContextTraceIdentifier);
     }
 
-    /// <summary>
-    /// W#C traceparent header format - [VERSION]-[TRACE_ID]-[PARENT_ID]-[TRACE_FLAGS]
-    /// </summary>
     [Theory]
     [InlineAutoData]
-    public async Task Options_UseTraceParentHeader_enabled_should_return_TraceId_from_w3c_header(string traceId, string parentId, string traceFlags)
+    public async Task Options_UseHeader_should_return_value_from_header(string headerName, string headerValue)
     {
         Setup(
             new WebCorrelationIdOptions
             {
-                UseHttpContext = false,
-                UseTraceParentHeader = true
-            }
-        );
-
-        // clean up generated values
-        traceId = traceId.Replace("-", "");
-        parentId = parentId.Replace("-", "");
-        traceFlags = traceFlags.Replace("-", "");
-
-        var request = new HttpRequestMessage(HttpMethod.Get, "/");
-        request.Headers.Add("traceparent", $"00-{traceId}-{parentId}-{traceFlags}");
-        await _httpClient.SendAsync(request);
-
-        // Assert
-        var result = _correlationIdProvider.Get();
-        result.Should().Be(traceId);
-    }
-
-    [Theory]
-    [InlineAutoData]
-    public async Task Options_HeaderNames_supplied_should_return_header_value(string headerName, string headerValue)
-    {
-        Setup(
-            new WebCorrelationIdOptions
-            {
-                UseHttpContext = false,
-                UseTraceParentHeader = false,
-                HeaderNames = [headerName]
+                Evaluators = [Evaluator.UseHeader(headerName)]
             }
         );
 
@@ -106,6 +71,10 @@ public class WebCorrelationIdMiddlewareTests
             .ConfigureServices(services =>
             {
                 services.AddScoped<ICorrelationIdProvider>(_ => _correlationIdProvider);
+                services.AddLogging(c =>
+                {
+                    c.AddConsole();
+                });
             })
             .Configure(app =>
             {

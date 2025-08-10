@@ -8,7 +8,7 @@ public static class CorrelationIdExtensions
     /// </summary>
     public static bool IsValidCorrelationId(this string? correlationId)
     {
-        if (string.IsNullOrWhiteSpace(correlationId)) return false;
+        if (string.IsNullOrWhiteSpace(correlationId?.Trim())) return false;
 
         correlationId = correlationId.Trim();
         var distinctChars = correlationId.Distinct().Except([' ']).ToList();

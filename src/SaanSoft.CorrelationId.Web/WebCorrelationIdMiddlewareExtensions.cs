@@ -16,4 +16,5 @@ public static class WebCorrelationIdMiddlewareExtensions
     /// </summary>
     public static IApplicationBuilder UseWebCorrelationIdMiddleware(this IApplicationBuilder builder, WebCorrelationIdOptions options)
         => builder.UseMiddleware<WebCorrelationIdMiddleware>(options);
+
 }

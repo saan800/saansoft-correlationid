@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace SaanSoft.CorrelationId.Web;
 
 /// <summary>
@@ -7,31 +9,26 @@ namespace SaanSoft.CorrelationId.Web;
 public class WebCorrelationIdOptions
 {
     /// <summary>
-    /// First: Try to extract the correlationId from HttpContext (eg HttpContext.TraceIdentifier)
-    ///
-    /// @default: true;
+    /// Evaluation functions to get the CorrelationId. The first match will be used.
     /// </summary>
-    /// <remarks>
-    /// For more details read https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext.traceidentifier
-    /// </remarks>
-    public bool UseHttpContext { get; set; } = true;
+    public IEnumerable<Func<HttpContext, string?>> Evaluators { get; set; } = [];
 
     /// <summary>
-    /// Second: The traceparent header is a commonly used W3C standard to track requests across systems.
-    /// Its in the format: `[VERSION]-[TRACE_ID]-[PARENT_ID]-[TRACE_FLAGS]`.
-    ///
-    /// `TRACE_ID` is the equivalent of the CorrelationId
-    ///
+    /// Add the CorrelationId to the response header with this name.
+    /// Provide null if you don't want to add the correlationId to a response header
+    /// @default: X-Correlation-ID
+    /// </summary>
+    public string? ResponseHeaderName { get; set; } = "X-Correlation-ID";
+
+    /// <summary>
+    /// If the <see cref="ResponseHeaderName"/> already exists in the response, should it be overwritten
+    /// @default: false
+    /// </summary>
+    public bool OverrideResponseHeader { get; set; }
+
+    /// <summary>
+    /// Begin the logger.BeginScope with the CorrelationId
     /// @default: true
     /// </summary>
-    /// <remarks>
-    /// For more details read https://www.w3.org/TR/trace-context-2/#traceparent-header
-    /// </remarks>
-    public bool UseTraceParentHeader { get; set; } = true;
-
-    /// <summary>
-    /// Finally: Check if a header exist on the http request and use that value as the CorrelationId
-    /// </summary>
-    /// <example>["x-correlation-id"]</example>
-    public string[] HeaderNames { get; set; } = [];
+    public bool AddCorrelationIdToLoggerScope { get; set; } = true;
 }
