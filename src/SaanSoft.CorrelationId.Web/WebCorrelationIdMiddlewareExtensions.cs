@@ -10,6 +10,7 @@ public static class WebCorrelationIdMiddlewareExtensions
     /// </summary>
 // TODO: cref for ^^
 // TODO: make options required, and this function ne up default 
+// TODO: rename file to IAppBuilderExts
     public static IApplicationBuilder UseWebCorrelationIdMiddleware(this IApplicationBuilder builder)
         => builder.UseMiddleware<WebCorrelationIdMiddleware>();
 
