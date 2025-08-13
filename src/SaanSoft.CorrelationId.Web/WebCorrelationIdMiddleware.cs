@@ -9,14 +9,12 @@ namespace SaanSoft.CorrelationId.Web;
 /// If can't find a CorrelationId from the Evaluators, it will default to a unique random string
 /// Sets the CorrelationId on the <see cref="ICorrelationIdProvider"/>
 /// </summary>
-public class WebCorrelationIdMiddleware(RequestDelegate next, WebCorrelationIdOptions? options = null)
+public class WebCorrelationIdMiddleware(RequestDelegate next, WebCorrelationIdOptions options)
 {
-    private readonly WebCorrelationIdOptions _options = options ?? new WebCorrelationIdOptions();
-
     public async Task InvokeAsync(HttpContext httpContext, ICorrelationIdProvider correlationIdProvider)
     {
         // try evaluators to find a correlationId
-        string? correlationId = _options.Evaluators
+        string? correlationId = options.Evaluators
             .Select(evaluator => evaluator.Invoke(httpContext))
             .FirstOrDefault(result => result.IsValidCorrelationId());
 
@@ -28,22 +26,22 @@ public class WebCorrelationIdMiddleware(RequestDelegate next, WebCorrelationIdOp
 
         correlationIdProvider.Set(correlationId);
 
-        if (!string.IsNullOrWhiteSpace(_options.ResponseHeaderName))
+        if (!string.IsNullOrWhiteSpace(options.ResponseHeaderName))
         {
             httpContext.Response.OnStarting(() =>
             {
                 // don't overwrite an existing correlationId, unless specifically configured to do so
-                if (_options.OverrideResponseHeader ||
-                    !httpContext.Response.Headers.ContainsKey(_options.ResponseHeaderName))
+                if (options.OverrideResponseHeader ||
+                    !httpContext.Response.Headers.ContainsKey(options.ResponseHeaderName))
                 {
-                    httpContext.Response.Headers[_options.ResponseHeaderName] = correlationId;
+                    httpContext.Response.Headers[options.ResponseHeaderName] = correlationId;
                 }
                 return Task.CompletedTask;
             });
         }
 
         ILogger? logger = null;
-        if (_options.AddCorrelationIdToLoggerScope)
+        if (options.AddCorrelationIdToLoggerScope)
         {
             var loggerFactory = httpContext.RequestServices.GetService<ILoggerFactory>();
             logger = loggerFactory?.CreateLogger<WebCorrelationIdMiddleware>();
