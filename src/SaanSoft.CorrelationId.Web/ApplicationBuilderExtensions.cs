@@ -2,17 +2,14 @@ using Microsoft.AspNetCore.Builder;
 
 namespace SaanSoft.CorrelationId.Web;
 
-public static class WebCorrelationIdMiddlewareExtensions
+public static class ApplicationBuilderExtensions
 {
     /// <summary>
-    /// Use the WebCorrelationIdMiddleware to configure the value supplied by ICorrelationIdProvider from HttpCntext. 
-    /// It will use the default WebCorrelationIdOptions values.
+    /// Use the WebCorrelationIdMiddleware to configure the value supplied by ICorrelationIdProvider from HttpCntext.
+    /// It will use the default <see cref="WebCorrelationIdOptions"/> values.
     /// </summary>
-// TODO: cref for ^^
-// TODO: make options required, and this function ne up default 
-// TODO: rename file to IAppBuilderExts
     public static IApplicationBuilder UseWebCorrelationIdMiddleware(this IApplicationBuilder builder)
-        => builder.UseMiddleware<WebCorrelationIdMiddleware>();
+        => builder.UseMiddleware<WebCorrelationIdMiddleware>(new WebCorrelationIdOptions());
 
     /// <summary>
     /// Use the WebCorrelationIdMiddleware to configure the value supplied by ICorrelationIdProvider from HttpContext.
