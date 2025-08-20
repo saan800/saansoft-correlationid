@@ -18,6 +18,7 @@
     <IsTestProject Condition="'$(IsTestProject)' == ''">false</IsTestProject>
     <IsTestProject Condition="$(MSBuildProjectName.StartsWith('SaanSoft.Tests.'))">true</IsTestProject>
     <IsPackable Condition="'$(IsTestProject)' == 'true'">false</IsPackable>
+    <IsPackable Condition="'$(IsPackable)' == ''">false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(IsPackable)' == 'true' ">
