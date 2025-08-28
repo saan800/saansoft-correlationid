@@ -20,6 +20,7 @@ jobs:
     uses: saan800/github/.github/workflows/_dotnet-build-test-pack-publish.yml@main
     with:
       # os-list: "ubuntu-latest, windows-latest"
+      os-list: "ubuntu-latest"
       os: ubuntu-latest
       # dotnet-version-list: "8.0.x, 9.0.x"
       dotnet-version-list: "9.0.x"
