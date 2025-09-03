@@ -15,7 +15,7 @@ public class CorrelationIdProvider : ICorrelationIdProvider
     /// <inheritdoc/>
     public string Get()
     {
-        if (!_correlationId.IsValidCorrelationId()) _correlationId = Guid.NewGuid().ToString();
+        if (!_correlationId.IsValidCorrelationId()) _correlationId = Guid.NewGuid().ToString("N");
 
         // ReSharper disable once NullableWarningSuppressionIsUsed
         return _correlationId!;
