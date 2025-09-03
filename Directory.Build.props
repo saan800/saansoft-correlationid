@@ -1,11 +1,16 @@
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>default</LangVersion>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <RestorePackagesWithLockFile>True</RestorePackagesWithLockFile>
+    <RestoreLockedMode>false</RestoreLockedMode>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn> <!-- optional: hides missing XML comment warnings -->
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
@@ -13,6 +18,7 @@
     <IsTestProject Condition="'$(IsTestProject)' == ''">false</IsTestProject>
     <IsTestProject Condition="$(MSBuildProjectName.StartsWith('SaanSoft.Tests.'))">true</IsTestProject>
     <IsPackable Condition="'$(IsTestProject)' == 'true'">false</IsPackable>
+    <IsPackable Condition="'$(IsPackable)' == ''">false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(IsPackable)' == 'true' ">
@@ -47,13 +53,4 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(IsTestProject)' == 'true'">
-    <PackageReference Include="AutoFixture.AutoFakeItEasy" />
-    <PackageReference Include="AutoFixture.Xunit2" />
-    <PackageReference Include="FluentAssertions" />
-    <PackageReference Include="xunit.runner.visualstudio">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
 </Project>
