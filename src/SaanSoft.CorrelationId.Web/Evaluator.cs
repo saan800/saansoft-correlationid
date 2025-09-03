@@ -36,7 +36,8 @@ public static class Evaluator
     /// Format: {ConnectionId}:{Request number}
     /// </summary>
     /// <remarks>
-    /// For more details read https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext.traceidentifier
+    /// For more details read
+    /// https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext.traceidentifier
     /// </remarks>
     public static string? UseHttpContextTraceIdentifier(this HttpContext httpContext)
     {

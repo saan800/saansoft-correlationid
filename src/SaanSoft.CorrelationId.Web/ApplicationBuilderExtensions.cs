@@ -14,7 +14,9 @@ public static class ApplicationBuilderExtensions
     /// <summary>
     /// Use the WebCorrelationIdMiddleware to configure the value supplied by ICorrelationIdProvider from HttpContext.
     /// </summary>
-    public static IApplicationBuilder UseWebCorrelationIdMiddleware(this IApplicationBuilder builder, WebCorrelationIdOptions options)
+    public static IApplicationBuilder UseWebCorrelationIdMiddleware(
+            this IApplicationBuilder builder,
+            WebCorrelationIdOptions options
+        )
         => builder.UseMiddleware<WebCorrelationIdMiddleware>(options);
-
 }
