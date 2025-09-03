@@ -5,7 +5,8 @@ using Microsoft.Extensions.Logging;
 namespace SaanSoft.CorrelationId.Web;
 
 /// <summary>
-/// Get the CorrelationId for each http request (uses the first valid match from <see cref="WebCorrelationIdOptions.Evaluators"/>)
+/// Get the CorrelationId for each http request (uses the first valid match from
+/// <see cref="WebCorrelationIdOptions.Evaluators"/>)
 /// If can't find a CorrelationId from the Evaluators, it will default to a unique random string
 /// Sets the CorrelationId on the <see cref="ICorrelationIdProvider"/>
 /// </summary>
