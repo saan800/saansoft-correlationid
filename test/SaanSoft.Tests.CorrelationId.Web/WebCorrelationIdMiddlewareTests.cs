@@ -28,7 +28,9 @@ public class WebCorrelationIdMiddlewareTests
 
     [Theory]
     [InlineAutoData]
-    public async Task Options_UseHttpContextTractIdentifier_should_return_HttpContext_TraceIdentifier(string httpContextTraceIdentifier)
+    public async Task Options_UseHttpContextTractIdentifier_should_return_HttpContext_TraceIdentifier(
+        string httpContextTraceIdentifier
+    )
     {
         Setup(
             new WebCorrelationIdOptions

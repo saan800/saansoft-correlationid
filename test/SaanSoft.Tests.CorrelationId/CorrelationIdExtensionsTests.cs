@@ -26,6 +26,6 @@ public class CorrelationIdExtensionsTests
     [Fact]
     public void IsValidCorrelationId_guid_value_should_return_true()
     {
-        Guid.NewGuid().ToString().IsValidCorrelationId().Should().BeTrue();
+        Guid.NewGuid().ToString("N").IsValidCorrelationId().Should().BeTrue();
     }
 }

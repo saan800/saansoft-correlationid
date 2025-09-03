@@ -39,7 +39,9 @@ public class EvaluatorTests
     [InlineAutoData("traceparent")]
     [InlineAutoData("TraceParent")]
     [InlineAutoData("TRACEPARENT")]
-    public void UseTraceParentHeader_valid_header_should_return_traceId(string headerName, string traceId, string parentId, string traceFlags)
+    public void UseTraceParentHeader_valid_header_should_return_traceId(
+        string headerName, string traceId, string parentId, string traceFlags
+    )
     {
         // clean up generated values
         traceId = traceId.Replace("-", "");
@@ -91,7 +93,9 @@ public class EvaluatorTests
     [InlineAutoData(null)]
     [InlineAutoData("")]
     [InlineAutoData("  ")]
-    public void UseHttpContextTraceIdentifier_with_no_TraceIdentifier_in_context_should_return_null(string? traceIdentifier)
+    public void UseHttpContextTraceIdentifier_with_no_TraceIdentifier_in_context_should_return_null(
+        string? traceIdentifier
+    )
     {
         var httpContext = Setup(new SetupOptions
         {

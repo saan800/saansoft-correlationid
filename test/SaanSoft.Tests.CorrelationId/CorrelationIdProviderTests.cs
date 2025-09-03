@@ -13,6 +13,7 @@ public class CorrelationIdProviderTests
 
         result.Should().NotBeNullOrWhiteSpace();
         result.Should().NotBe(Guid.Empty.ToString());
+        result.Should().NotBe(Guid.Empty.ToString("N"));
         Guid.TryParse(result, out _).Should().BeTrue();
     }
 
@@ -39,6 +40,7 @@ public class CorrelationIdProviderTests
         result.Should().NotBeNullOrWhiteSpace();
         result.Should().NotBe(val);
         result.Should().NotBe(Guid.Empty.ToString());
+        result.Should().NotBe(Guid.Empty.ToString("N"));
 
         Guid.TryParse(result, out _).Should().BeTrue();
         Guid.Parse(result).Should().NotBe(Guid.Empty);
