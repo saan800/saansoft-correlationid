@@ -3,9 +3,7 @@
   "caseSensitive": false,
   "language": "en-GB",
   "useGitignore": true,
-  "dictionaries": [
-    "project-dictionary"
-  ],
+  "dictionaries": ["project-dictionary"],
   "ignorePaths": [
     "LICENSE",
     ".gitignore",
@@ -17,6 +15,7 @@
     "./dictionary.dic",
     "./Directory.*.props",
     "./Directory.*.targets",
+    "**/*.lock.json",
     "**/*.csproj"
   ],
   "dictionaryDefinitions": [
@@ -26,5 +25,5 @@
       "description": "Words used in this project",
       "addWords": true
     }
-  ],
+  ]
 }
