@@ -5,7 +5,7 @@ namespace SaanSoft.CorrelationId.Web;
 public static class ApplicationBuilderExtensions
 {
     /// <summary>
-    /// Use the WebCorrelationIdMiddleware to configure the value supplied by ICorrelationIdProvider from HttpCntext.
+    /// Use the WebCorrelationIdMiddleware to configure the value supplied by ICorrelationIdProvider from HttpContext.
     /// It will use the default <see cref="WebCorrelationIdOptions"/> values.
     /// </summary>
     public static IApplicationBuilder UseWebCorrelationIdMiddleware(this IApplicationBuilder builder)
