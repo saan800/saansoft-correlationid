@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.Tests.CorrelationI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.Tests.CorrelationId.Common", "test\SaanSoft.Tests.CorrelationId.Common\SaanSoft.Tests.CorrelationId.Common.csproj", "{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.Tests.CorrelationId.Web", "test\SaanSoft.Tests.CorrelationId.Web\SaanSoft.Tests.CorrelationId.Web.csproj", "{8529AD31-D981-421F-829E-5605A2E2D076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaanSoft.CorrelationId.Web", "src\SaanSoft.CorrelationId.Web\SaanSoft.CorrelationId.Web.csproj", "{E2D7519A-75E7-4B2B-A05E-EC7A1C1A0F60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +43,18 @@ Global
 		{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8529AD31-D981-421F-829E-5605A2E2D076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8529AD31-D981-421F-829E-5605A2E2D076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8529AD31-D981-421F-829E-5605A2E2D076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8529AD31-D981-421F-829E-5605A2E2D076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D7519A-75E7-4B2B-A05E-EC7A1C1A0F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D7519A-75E7-4B2B-A05E-EC7A1C1A0F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D7519A-75E7-4B2B-A05E-EC7A1C1A0F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D7519A-75E7-4B2B-A05E-EC7A1C1A0F60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{31889625-3724-44C6-B426-FF0C031C2FC7} = {A1F9D39E-7FAB-4D65-8DE7-C29511D4C024}
 		{ACBF3961-E6E1-4EC2-948E-04C47D2A8A1B} = {A1F9D39E-7FAB-4D65-8DE7-C29511D4C024}
+		{8529AD31-D981-421F-829E-5605A2E2D076} = {A1F9D39E-7FAB-4D65-8DE7-C29511D4C024}
 	EndGlobalSection
 EndGlobal

@@ -13,6 +13,7 @@ public class CorrelationIdProviderTests
 
         result.Should().NotBeNullOrWhiteSpace();
         result.Should().NotBe(Guid.Empty.ToString());
+        result.Should().NotBe(Guid.Empty.ToString("N"));
         Guid.TryParse(result, out _).Should().BeTrue();
     }
 
@@ -26,22 +27,22 @@ public class CorrelationIdProviderTests
         result.Should().Be(val);
     }
 
-
-
     [Theory]
     [InlineData("")]
     [InlineData("   ")]
     [InlineData("000000")]
     [InlineData("00000000-0000-0000-0000-000000000000")]
-    public void Set_and_Get_invalid_value_returns_default_guid_new(string val)
+    public void Set_and_Get_invalid_value_returns_new_guid_by_default(string val)
     {
-        var temp = Guid.Empty.ToString();
         _provider.Set(val);
 
         var result = _provider.Get();
         result.Should().NotBeNullOrWhiteSpace();
         result.Should().NotBe(val);
         result.Should().NotBe(Guid.Empty.ToString());
+        result.Should().NotBe(Guid.Empty.ToString("N"));
+
         Guid.TryParse(result, out _).Should().BeTrue();
+        Guid.Parse(result).Should().NotBe(Guid.Empty);
     }
 }

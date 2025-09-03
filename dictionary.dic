@@ -1,13 +1,11 @@
 abbrev
-bson
 codecov
 color
-nojournal
+correlationid
 opencover
 prexisting
 Saan
 SaanSoft
-Specflow
 signoff
-unittests
-Xunit
+traceparent
+xunit
