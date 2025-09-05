@@ -20,7 +20,6 @@ jobs:
     uses: saan800/github/.github/workflows/_dotnet-build-test-pack-publish.yml@main
     with:
       os: ubuntu-latest
-      dotnet-version-matrix: '[{ "dotnet-version": "9.0.x", "framework": "net9.0" },{ "dotnet-version": "8.0.x", "framework": "net8.0" }]'
       dotnet-version: 9.0.x
       codecov-slug: "saan800/saansoft-correlationId"
       is-release: ${{ github.ref == 'refs/heads/main' }}
