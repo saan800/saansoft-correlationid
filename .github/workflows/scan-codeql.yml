@@ -47,13 +47,14 @@ jobs:
 
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        uses: step-security/harden-runner@ec9f2d5744a09debf3a187a3f4f675c53b671911 # v2.13.0
         with:
           disable-sudo: true
           egress-policy: block
           allowed-endpoints: >
             api.github.com:443
             api.nuget.org:443
+            builds.dotnet.microsoft.com:443
             crl3.digicert.com:80
             crl4.digicert.com:80
             dc.services.visualstudio.com:443
@@ -66,6 +67,11 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Setup .NET SDK 9.0.x
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: 9.0.x
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
