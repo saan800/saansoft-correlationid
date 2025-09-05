@@ -54,6 +54,7 @@ jobs:
           allowed-endpoints: >
             api.github.com:443
             api.nuget.org:443
+            builds.dotnet.microsoft.com:443
             crl3.digicert.com:80
             crl4.digicert.com:80
             dc.services.visualstudio.com:443
@@ -66,6 +67,11 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+
+      - name: Setup .NET SDK 9.0.x
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: 9.0.x
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
