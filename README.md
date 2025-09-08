@@ -1,6 +1,6 @@
 # SaanSoft.CorrelationId
 
-[![ci](https://github.com/saan800/saansoft-correlationid/actions/workflows/ci.yml/badge.svg)](https://github.com/saan800/saansoft-correlationid/actions/workflows/ci.yml)
+[![ci-cd](https://github.com/saan800/saansoft-correlationid/actions/workflows/ci-cd.yml/badge.svg?branch=main)](https://github.com/saan800/saansoft-correlationid/actions/workflows/ci-cd.yml)
 [![codecov](https://codecov.io/gh/saan800/saansoft-correlationid/branch/main/graph/badge.svg?token=K88KBHI5K1)](https://codecov.io/gh/saan800/saansoft-correlationid)
 
 In a distributed system it can be a challenge to trace HTTP requests and messages through multiple microservices.
