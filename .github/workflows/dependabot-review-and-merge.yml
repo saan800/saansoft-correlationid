@@ -1,4 +1,4 @@
-name: dependabot-auto-approve-and-merge
+name: dependabot-review-and-merge
 
 on: pull_request
 
@@ -17,8 +17,6 @@ jobs:
       pull-requests: write
     uses: saan800/github/.github/workflows/_dependabot-auto-approve-and-merge.yml@main
     with:
-      is-fork: ${{ github.event.repository.fork }}
-      user-login: ${{ github.event.pull_request.user.login }}
       pr-url: ${{ github.event.pull_request.html_url }}
     secrets:
       GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
