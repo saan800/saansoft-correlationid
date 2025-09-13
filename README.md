@@ -4,6 +4,12 @@
 [![codecov](https://codecov.io/gh/saan800/saansoft-correlationid/branch/main/graph/badge.svg?token=K88KBHI5K1)](https://codecov.io/gh/saan800/saansoft-correlationid)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/saan800/saansoft-correlationid/badge)](https://scorecard.dev/viewer/?uri=github.com/saan800/saansoft-correlationid)
 
+[![SaanSoft.CorrelationId Nuget](https://img.shields.io/nuget/v/SaanSoft.CorrelationId?logo=NuGet&label=SaanSoft.CorrelationId&labelColor=%23333333&color=navy)](https://www.nuget.org/packages/SaanSoft.CorrelationId)
+[![SaanSoft.CorrelationId.Web Nuget](https://img.shields.io/nuget/v/SaanSoft.CorrelationId.Web?logo=NuGet&label=SaanSoft.CorrelationId.Web&labelColor=%23333333&color=navy)](https://www.nuget.org/packages/SaanSoft.CorrelationId.Web)
+
+
+
+
 In a distributed system it can be a challenge to trace HTTP requests and messages through multiple microservices.
 
 A `CorrelationId` bundles each logical transaction as it moves through multiple processors.
