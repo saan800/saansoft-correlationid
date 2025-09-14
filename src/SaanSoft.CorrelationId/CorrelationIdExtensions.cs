@@ -10,11 +10,11 @@ public static class CorrelationIdExtensions
     {
         if (string.IsNullOrWhiteSpace(correlationId?.Trim())) return false;
 
-        correlationId = correlationId.Trim();
-        var distinctChars = correlationId.Distinct().Except([' ']).ToList();
+        var id = (correlationId ?? "").Trim();
+        var distinctChars = id.Distinct().Except([' ']).ToList();
 
         // ie "000..."
-        if (distinctChars.Count == 1 && distinctChars.Contains('0')) return false;
+        if (distinctChars.Count == 1) return false;
         // ie Guid.Empty
         if (distinctChars.Count == 2 && distinctChars.Contains('0') && distinctChars.Contains('-')) return false;
 

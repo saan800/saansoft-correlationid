@@ -15,9 +15,10 @@ public class WebCorrelationIdMiddleware(RequestDelegate next, WebCorrelationIdOp
     public async Task InvokeAsync(HttpContext httpContext, ICorrelationIdProvider correlationIdProvider)
     {
         // try evaluators to find a correlationId
-        string? correlationId = options.Evaluators
+        var correlationId = options.Evaluators
             .Select(evaluator => evaluator.Invoke(httpContext))
-            .FirstOrDefault(result => result.IsValidCorrelationId());
+            .FirstOrDefault(result => result.IsValidCorrelationId())
+            ?? "";
 
         // still nothing - just use guid generated value
         if (string.IsNullOrWhiteSpace(correlationId) || !correlationId.IsValidCorrelationId())
