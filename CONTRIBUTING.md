@@ -2,6 +2,17 @@
 
 ## Recommended Git Setup
 
+### Git Config
+
+This repo uses the line endings `LF`.
+
+Run the following to configure git config, especially if you are working on Windows.
+
+```shell
+git config core.autocrlf input
+git config core.eol lf
+```
+
 ### Git Hooks
 
 All PRs will be verified against linting scripts to ensure styling consistency.
@@ -18,16 +29,15 @@ git config core.hooksPath .githooks
 So we can attribute changes to the people involved we like to have signed commits
 
 ```shell
-git config user.name "John Doe"
-git config user.email johndoe@example.com
+git config user.name "Bugs Bunny"
+git config user.email bugs@example.com
 
 # Or to configure globally for all repositories
-git config --global user.name "John Doe"
-git config --global user.email johndoe@example.com
+git config --global user.name "Bugs Bunny"
+git config --global user.email bugs@example.com
 ```
 
 Then use the `-s` or `--signoff` flag when committing.
-
 
 ## Spelling
 

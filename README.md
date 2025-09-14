@@ -8,8 +8,6 @@
 [![SaanSoft.CorrelationId.Web Nuget](https://img.shields.io/nuget/v/SaanSoft.CorrelationId.Web?logo=NuGet&label=SaanSoft.CorrelationId.Web&labelColor=%23333333&color=navy)](https://www.nuget.org/packages/SaanSoft.CorrelationId.Web)
 
 
-
-
 In a distributed system it can be a challenge to trace HTTP requests and messages through multiple microservices.
 
 A `CorrelationId` bundles each logical transaction as it moves through multiple processors.
