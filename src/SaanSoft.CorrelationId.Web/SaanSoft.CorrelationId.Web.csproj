@@ -19,6 +19,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="System.Net.Http" />
   </ItemGroup>
 
   <ItemGroup>
