@@ -25,8 +25,8 @@ updates:
       testing:
         patterns:
           - AutoFixture*
+          - AwesomeAssertions*
           - coverlet*
-          - FluentAssertions*
           - GitHubActionsTestLogger
           - xunit*
         update-types: ["minor", "patch"]

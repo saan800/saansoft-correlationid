@@ -70,7 +70,7 @@ public static class Evaluator
     /// </remarks>
     private static string? ExtractW3CFormatTraceId(string? val)
     {
-        var parts = (val ?? "").Split("-");
+        var parts = (val ?? "").Split('-');
         if (parts.Length != 4) return null;
 
         // currently there is only version="00" - where the second item is the "TRACE_ID"

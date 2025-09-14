@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>default</LangVersion>
@@ -39,6 +39,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(IsTestProject)' == 'true'">
+    <TargetFramework>net9.0</TargetFramework>
     <NoWarn>CS1591;CS8602;CS8625;CS8618</NoWarn>
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutput>$([System.IO.Path]::Combine($(MSBuildProjectDirectory), "../../", 'reports', 'coverage'))/</CoverletOutput>
@@ -48,8 +49,8 @@
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(IsTestProject)' == 'true'">
+    <Using Include="AwesomeAssertions" />
     <Using Include="FakeItEasy" />
-    <Using Include="FluentAssertions" />
     <Using Include="Xunit" />
   </ItemGroup>
 
