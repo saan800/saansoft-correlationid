@@ -9,7 +9,7 @@ This repo uses the line endings `LF`.
 Run the following to configure git config, especially if you are working on Windows.
 
 ```shell
-git config core.autocrlf false
+git config core.autocrlf input
 git config core.eol lf
 ```
 
