@@ -12,15 +12,59 @@ updates:
       prefix: "chore(github-actions): "
     labels:
       - "dependencies"
+      - "no-release"
       - "no-release-notes"
       - "github-actions"
 
   - package-ecosystem: nuget
     directory: "/"
     groups:
-      microsoft:
+      testing:
+        patterns:
+          - AutoFixture*
+          - AwesomeAssertions*
+          - coverlet*
+          - GitHubActionsTestLogger
+          - xunit*
+        update-types: ["minor", "patch"]
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "05:00"
+      timezone: "Australia/Perth"
+    commit-message:
+      prefix: "dependencies(nuget): "
+    labels:
+      - "dependencies"
+      - "no-release"
+
+  - package-ecosystem: nuget
+    directory: "/"
+    # ignoring the testing dependencies, as we want to do different labels for them,
+    # so we dont create un-useful releasses
+    ignore:
+      - dependency-name: "AutoFixture*"
+        versions: [ ">=1.0.0" ]
+      - dependency-name: "AwesomeAssertions*"
+        versions: [ ">=1.0.0" ]
+      - dependency-name: "coverlet*"
+        versions: [ ">=1.0.0" ]
+      - dependency-name: "GitHubActionsTestLogger*"
+        versions: [ ">=1.0.0" ]
+      - dependency-name: "xunit*"
+        versions: [ ">=1.0.0" ]
+    groups:
+      AspNetCore:
+        patterns:
+          - Microsoft.AspNetCore*
+        update-types: ["minor", "patch"]
+      Microsoft:
         patterns:
           - Microsoft*
+        update-types: ["minor", "patch"]
+      System:
+        patterns:
+          - System*
         update-types: ["minor", "patch"]
       testing:
         patterns:
