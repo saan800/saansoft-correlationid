@@ -12,15 +12,24 @@ updates:
       prefix: "chore(github-actions): "
     labels:
       - "dependencies"
+      - "no-release"
       - "no-release-notes"
       - "github-actions"
 
   - package-ecosystem: nuget
     directory: "/"
     groups:
-      microsoft:
+      AspNetCore:
+        patterns:
+          - Microsoft.AspNetCore*
+        update-types: ["minor", "patch"]
+      Microsoft:
         patterns:
           - Microsoft*
+        update-types: ["minor", "patch"]
+      System:
+        patterns:
+          - System*
         update-types: ["minor", "patch"]
       testing:
         patterns:
