@@ -24,9 +24,9 @@
       },
       "AwesomeAssertions": {
         "type": "Direct",
-        "requested": "[9.3.0, )",
-        "resolved": "9.3.0",
-        "contentHash": "8lGLYap2ec2gNLgjf2xKZaKLpQ7j36oJvrYzBVVpNAumqnxRdevqqhEF66qxE92f8y2+zsbQ061DeHG61ZhzaQ=="
+        "requested": "[9.4.0, )",
+        "resolved": "9.4.0",
+        "contentHash": "dJxkWiQ8D+xT6Gr2sSL83+Mar+Vpy2JTcUPxFcckpPJ8VYBfSgnk+zqpS6t7kcGnjz8NLyF14qfuoL4bKzzoew=="
       },
       "coverlet.collector": {
         "type": "Direct",
@@ -1205,7 +1205,7 @@
         "dependencies": {
           "AutoFixture.AutoFakeItEasy": "[4.18.1, )",
           "AutoFixture.Xunit2": "[4.18.1, )",
-          "AwesomeAssertions": "[9.3.0, )",
+          "AwesomeAssertions": "[9.4.0, )",
           "Microsoft.NET.Test.Sdk": "[17.14.1, )",
           "System.Net.Http": "[4.3.4, )",
           "System.Text.RegularExpressions": "[4.3.1, )",
