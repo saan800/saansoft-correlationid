@@ -14,13 +14,13 @@
       },
       "Microsoft.Extensions.Logging.Abstractions": {
         "type": "Direct",
-        "requested": "[9.0.13, )",
-        "resolved": "9.0.13",
-        "contentHash": "DjxxzZzkQLRJ6d9FLj7n513UvqYREl0ygN//SYA+N4+QWM1UvSJjpv3+zrlIraUyui0NXRbeJSU/hruR7lTw/g==",
+        "requested": "[9.0.14, )",
+        "resolved": "9.0.14",
+        "contentHash": "uodlxeHHtvEgrAXzHa5T+ESnQhxCk/QSONpiabWjZ8Hn+PcMkXtmbX8YkL1XcFGHqj7hZXUAe2pq7gBptPTz2Q==",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.13",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.14",
           "System.Buffers": "4.5.1",
-          "System.Diagnostics.DiagnosticSource": "9.0.13",
+          "System.Diagnostics.DiagnosticSource": "9.0.14",
           "System.Memory": "4.5.5"
         }
       },
@@ -77,18 +77,18 @@
       },
       "Microsoft.Bcl.AsyncInterfaces": {
         "type": "Transitive",
-        "resolved": "9.0.13",
-        "contentHash": "k5H5OcokPhbp0wTtyhJwR/qsnmDvuNXm/NyEl8cMlZNEVfdYMu+OsV1Rc4/6m73e0RYdatSZW3Yjo4wHnmiuaA==",
+        "resolved": "9.0.14",
+        "contentHash": "H0Laf0wUWa+wKXWJR5NSv82gLuKX0tjwKTABEp21JoLGDvXtnWty6xbsvDC5Q7jncRXcBApRJn6mMBgdRir1nA==",
         "dependencies": {
           "System.Threading.Tasks.Extensions": "4.5.4"
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "Transitive",
-        "resolved": "9.0.13",
-        "contentHash": "HyJoV/UcJr71gPs9ot3GFJG2yyYxoBNTvp48xVJn37FRLeJZithg74aUNZQRCJgk0yG6LbgDlXDJJwG3QFnoyQ==",
+        "resolved": "9.0.14",
+        "contentHash": "LezJ0enh6upO5EnPwACOZc/DdT1A8lvX6HPl/0rbe0eGt9rTDDPfx+Ny9OYZqf4g25Y3hOfWBQtRfMzueINNVQ==",
         "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "9.0.13",
+          "Microsoft.Bcl.AsyncInterfaces": "9.0.14",
           "System.Threading.Tasks.Extensions": "4.5.4"
         }
       },
@@ -253,8 +253,8 @@
       },
       "System.Diagnostics.DiagnosticSource": {
         "type": "Transitive",
-        "resolved": "9.0.13",
-        "contentHash": "4UOSOj/lq46yHG1fd5c/rZM8BVGr8Arz8WdRxN9kgiUUmw9pxnBBaitBmvyJb0bEvuXdN3C20GfiSNQmQ3eeLA==",
+        "resolved": "9.0.14",
+        "contentHash": "DancqiEgIh374baAc/wUpWoLZh6yPECMDwODJH6hqwBBccKATIANQl5VqZRfuVkt54UgiKeX6cnvVRwz8+FeqA==",
         "dependencies": {
           "System.Memory": "4.5.5",
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
