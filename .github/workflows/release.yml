@@ -1,13 +1,11 @@
-name: ci-cd
+name: release
 
 on:
-  pull_request:
   push:
     branches:
       - main
     paths:
       - "src/**"
-      - "Directory.*.props"
   workflow_dispatch: # 👈 manual trigger here to release
     inputs:
       force-release:
@@ -17,7 +15,8 @@ on:
         default: false
 
 permissions:
-  contents: read
+  contents: write
+  packages: write
   pull-requests: read
 
 jobs:
@@ -26,7 +25,7 @@ jobs:
       contents: write
       packages: write
       pull-requests: read
-    uses: saan800/github/.github/workflows/_dotnet-build-test-pack-publish-nuget.yml@main
+    uses: saan800/github/.github/workflows/dotnet-package-release.yml@main
     with:
       os: ubuntu-latest
       dotnet-version: 9.0.x
@@ -34,6 +33,5 @@ jobs:
       is-release-branch: ${{ github.ref == 'refs/heads/main' }}
       force-release: ${{ github.event.inputs.force-release == 'true' }}
     secrets:
-      GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       NUGET_API_KEY: ${{ secrets.NUGET_TOKEN }}
