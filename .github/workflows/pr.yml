@@ -22,6 +22,8 @@ jobs:
     with:
       os: ubuntu-latest
       dotnet-version: 9.0.x
+      run-lint: true
+      cspell-config: ".cspell.json"
       codecov-slug: "saan800/saansoft-correlationId"
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
