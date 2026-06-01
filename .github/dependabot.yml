@@ -34,10 +34,22 @@ updates:
         patterns:
           - AutoFixture*
           - AwesomeAssertions*
-          - coverlet*
+          - coverlet.collector
+          - coverlet.msbuild
           - GitHubActionsTestLogger
+          - Microsoft.NET.Test.Sdk
           - xunit*
         update-types: ["minor", "patch"]
+      testing-major:
+        patterns:
+          - AutoFixture*
+          - AwesomeAssertions*
+          - coverlet.collector
+          - coverlet.msbuild
+          - GitHubActionsTestLogger
+          - Microsoft.NET.Test.Sdk
+          - xunit*
+        update-types: ["major"]
     schedule:
       interval: monthly
       time: "05:00"
