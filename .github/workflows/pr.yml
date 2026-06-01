@@ -23,7 +23,5 @@ jobs:
       os: ubuntu-latest
       dotnet-version: 9.0.x
       codecov-slug: "saan800/saansoft-correlationId"
-      is-release-branch: ${{ github.ref == 'refs/heads/main' }}
-      force-release: ${{ github.event.inputs.force-release == 'true' }}
     secrets:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
