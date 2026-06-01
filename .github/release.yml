@@ -1,8 +1,9 @@
 changelog:
   exclude:
     labels:
-      - no-release-notes
-      - github_actions
+      - no-release
+    authors:
+      - dependabot
   categories:
     - title: 🔥🔥 Breaking Changes 🔥🔥
       labels:
@@ -16,6 +17,12 @@ changelog:
     - title: Dependency Updates 🎳
       labels:
         - dependencies
+    - title: Documentation 📖
+      labels:
+        - documentation
+    - title: Configuration & CI ⚙️
+      labels:
+        - configuration
     - title: Other 📝
       labels:
         - "*"
