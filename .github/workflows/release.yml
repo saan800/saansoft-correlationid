@@ -15,16 +15,20 @@ on:
         default: false
 
 permissions:
+  actions: read
   contents: write
   packages: write
   pull-requests: read
+  security-events: write
 
 jobs:
   ci-cd:
     permissions:
+      actions: read
       contents: write
       packages: write
       pull-requests: read
+      security-events: write
     uses: saan800/github/.github/workflows/dotnet-package-release.yml@main
     with:
       os: ubuntu-latest
